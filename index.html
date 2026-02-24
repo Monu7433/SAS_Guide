@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAS Biostatistics & Clinical Research Guide | Complete Programming Reference</title>
+    <meta name="description" content="This showcases my academic and project-based experience in biostatistics, statistical programming, and survival analysis using SAS and R. It includes SAS programming guides and analysis examples created for learning and demonstration">
+    <title>Biostatistician | Statistical Programmer | SAS Programmer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
@@ -12,21 +13,51 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
         
-        body { font-family: 'Inter', sans-serif; }
+        * {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+        /* Custom Scrollbar - Mobile optimized */
+        ::-webkit-scrollbar { 
+            width: 6px; 
+            height: 6px; 
+        }
+        ::-webkit-scrollbar-track { 
+            background: #f1f5f9; 
+        }
+        ::-webkit-scrollbar-thumb { 
+            background: #3b82f6; 
+            border-radius: 3px; 
+        }
+        ::-webkit-scrollbar-thumb:hover { 
+            background: #2563eb; 
+        }
         
-        /* Code Block Styling */
+        /* Code Block Styling - Mobile optimized */
         pre[class*="language-"] {
-            border-radius: 0.75rem;
-            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
             background: #0f172a !important;
             border: 1px solid #334155;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            font-size: 0.75rem;
+        }
+        
+        @media (min-width: 768px) {
+            pre[class*="language-"] {
+                border-radius: 0.75rem;
+                margin: 1.5rem 0;
+                font-size: 0.875rem;
+            }
         }
         
         /* Gradient Text */
@@ -37,13 +68,15 @@
             background-clip: text;
         }
         
-        /* Card Hover Effects */
-        .topic-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .topic-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        /* Card Hover Effects - Disabled on touch devices */
+        @media (hover: hover) {
+            .topic-card {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .topic-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
         }
         
         /* Sidebar Active State */
@@ -53,23 +86,72 @@
             border-right: 3px solid #2563eb;
         }
         
-        /* Smooth Scroll */
-        html { scroll-behavior: smooth; }
+        @media (max-width: 1024px) {
+            .nav-link.active {
+                border-right: none;
+                border-left: 3px solid #2563eb;
+            }
+        }
         
-        /* Table Styling */
+        /* Smooth Scroll */
+        html { 
+            scroll-behavior: smooth; 
+            scroll-padding-top: 80px;
+        }
+        
+        /* Table Styling - Mobile optimized */
         .clinical-table {
             border-collapse: separate;
             border-spacing: 0;
+            font-size: 0.75rem;
         }
+        
+        @media (min-width: 768px) {
+            .clinical-table {
+                font-size: 0.875rem;
+            }
+        }
+        
         .clinical-table th {
             background: #f8fafc;
             font-weight: 600;
             text-transform: uppercase;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             letter-spacing: 0.05em;
         }
+        
+        @media (min-width: 768px) {
+            .clinical-table th {
+                font-size: 0.75rem;
+            }
+        }
+        
         .clinical-table td, .clinical-table th {
             border-bottom: 1px solid #e2e8f0;
+            padding: 0.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .clinical-table td, .clinical-table th {
+                padding: 0.75rem;
+            }
+        }
+        
+        /* Mobile Table Container */
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1rem -1rem;
+            padding: 0 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .table-container {
+                margin: 1.5rem 0;
+                padding: 0;
+                border-radius: 0.5rem;
+                border: 1px solid #e2e8f0;
+            }
         }
         
         /* Print Styles */
@@ -86,51 +168,280 @@
         }
         .animate-fade-in { animation: fadeIn 0.5s ease-out; }
         
-        /* Copy Button */
-        .copy-btn {
-            opacity: 0;
-            transition: opacity 0.2s;
+       
+        
+        @media (hover: hover) {
+            .copy-btn {
+                opacity: 0;
+            }
+            
         }
-        pre:hover .copy-btn { opacity: 1; }
         
         /* Section badge */
         .section-badge {
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+/* PERFECT MOBILE LAYOUT FIX */
+
+@media (max-width: 1024px) {
+
+.sidebar {
+display:none !important;
+}
+
+.main-content {
+margin-left:0 !important;
+width:100% !important;
+}
+
+.hero-title {
+font-size: 1.6rem !important;
+}
+
+pre {
+font-size: 13px !important;
+overflow-x: auto;
+}
+
+.topic-card {
+margin-left: 0 !important;
+margin-right: 0 !important;
+}
+
+}
+        /* Mobile Menu Animation */
+        #mobile-menu > div {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-out;
         }
+        #mobile-menu:not(.hidden) > div {
+            transform: translateX(0);
+        }
+        
+        /* Touch-friendly button sizes */
+        .touch-target {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        /* Prevent text zoom on iOS */
+        @supports (-webkit-touch-callout: none) {
+            select, textarea, input {
+                font-size: 16px;
+            }
+        }
+        
+        /* Responsive Typography */
+        .responsive-heading {
+            font-size: 1.5rem;
+            line-height: 1.3;
+        }
+        
+        @media (min-width: 768px) {
+            .responsive-heading {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .responsive-heading {
+                font-size: 2.25rem;
+            }
+        }
+        
+        /* Hero text responsive */
+        .hero-title {
+            font-size: 1.875rem;
+            line-height: 1.2;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-title {
+                font-size: 2.25rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .hero-title {
+                font-size: 3.75rem;
+            }
+        }
+        
+        /* Content padding responsive */
+        .content-padding {
+            padding: 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .content-padding {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .content-padding {
+                padding: 2rem;
+            }
+        }
+        
+        /* Grid responsive */
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .responsive-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+        
+        /* Navigation improvements */
+        .nav-item {
+            padding: 0.75rem 1rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .nav-item {
+                padding: 0.5rem 0.75rem;
+            }
+        }
+        
+        /* Footer grid */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 640px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+/* FINAL MOBILE OPTIMIZATION */
+
+@media (max-width: 768px) {
+
+body {
+font-size: 15px;
+}
+
+.content-padding {
+padding: 16px !important;
+}
+
+.topic-card {
+border-radius: 12px !important;
+}
+
+.hero-title {
+font-size: 1.8rem !important;
+line-height: 1.3 !important;
+}
+
+pre {
+font-size: 12px !important;
+padding: 12px !important;
+}
+
+}
+.section-badge {
+background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+
+/* PASTE THIS BELOW */
+
+#sidebar-nav button div {
+align-items: center;
+gap: 10px;
+}
+
+#sidebar-nav button span {
+text-align: left;
+line-height: 1.3;
+}
+
+#sidebar-nav button {
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
     </style>
+
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased">
 
-    <!-- Mobile Header -->
-    <header class="lg:hidden fixed top-0 left-0 right-0 bg-white border-b border-slate-200 z-50 px-4 py-3 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+    <!-- Mobile Header - Enhanced -->
+    <header class="lg:hidden fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-slate-200 z-50 px-4 py-3 flex items-center justify-between shadow-sm">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
                 <span class="text-white font-bold text-sm">SAS</span>
             </div>
-            <span class="font-bold text-slate-800">BioStat Guide</span>
+            <div>
+                <span class="font-bold text-slate-800 text-lg leading-tight block">BioStat Guide</span>
+                <span class="text-xs text-slate-500">Clinical Research</span>
+            </div>
         </div>
-        <button id="mobile-menu-btn" class="p-2 hover:bg-slate-100 rounded-lg">
-            <i data-lucide="menu" class="w-6 h-6"></i>
+        <button id="mobile-menu-btn" class="touch-target p-2 hover:bg-slate-100 rounded-lg transition-colors flex items-center justify-center" aria-label="Open menu">
+            <i data-lucide="menu" class="w-6 h-6 text-slate-700"></i>
         </button>
     </header>
 
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden">
-        <div class="absolute right-0 top-0 bottom-0 w-80 bg-white overflow-y-auto">
-            <div class="p-4 border-b border-slate-200 flex justify-between items-center">
-                <span class="font-bold">Navigation</span>
-                <button id="close-mobile-menu" class="p-2 hover:bg-slate-100 rounded-lg">
-                    <i data-lucide="x" class="w-5 h-5"></i>
+    <!-- Mobile Menu Overlay - Enhanced -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden lg:hidden">
+        <div class="absolute right-0 top-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl overflow-y-auto">
+            <div class="p-4 border-b border-slate-200 flex justify-between items-center bg-slate-50 sticky top-0 z-10">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xs">SAS</span>
+                    </div>
+                    <span class="font-bold text-slate-800">Navigation</span>
+                </div>
+                <button id="close-mobile-menu" class="touch-target p-2 hover:bg-slate-200 rounded-lg transition-colors flex items-center justify-center" aria-label="Close menu">
+                    <i data-lucide="x" class="w-6 h-6 text-slate-600"></i>
                 </button>
             </div>
-            <nav class="p-4 space-y-1" id="mobile-nav">
+            <nav class="p-4 space-y-2" id="mobile-nav">
                 <!-- Populated by JS -->
             </nav>
+            
+            <!-- Mobile Quick Actions -->
+            <div class="p-4 border-t border-slate-200 bg-slate-50">
+                <p class="text-xs font-semibold text-slate-500 mb-3 uppercase tracking-wide">Quick Jump</p>
+                <div class="grid grid-cols-2 gap-2">
+                    <button id="btn-jump-basic" class="touch-target px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 hover:bg-blue-50 hover:border-blue-200 transition-colors text-left">
+                        Basic SAS
+                    </button>
+                    <button id="btn-jump-stats" class="touch-target px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 hover:bg-blue-50 hover:border-blue-200 transition-colors text-left">
+                        Statistics
+                    </button>
+                    <button id="btn-jump-survival" class="touch-target px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 hover:bg-red-50 hover:border-red-200 transition-colors text-left col-span-2 flex items-center gap-2">
+                        <i data-lucide="heart-pulse" class="w-4 h-4 text-red-500"></i>
+                        Survival Analysis
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="flex min-h-screen pt-14 lg:pt-0">
-        <!-- Sidebar -->
+    <div class="flex min-h-screen pt-16 lg:pt-0">
+        <!-- Sidebar - Desktop -->
         <aside class="sidebar fixed left-0 top-0 bottom-0 w-72 bg-white border-r border-slate-200 overflow-y-auto z-30 hidden lg:block">
             <div class="p-6 border-b border-slate-200">
                 <div class="flex items-center gap-3 mb-2">
@@ -150,52 +461,57 @@
             
             <div class="p-4 border-t border-slate-200 mt-auto">
                 <div class="bg-slate-50 rounded-lg p-3 text-xs text-slate-600">
-                    <p class="font-semibold mb-1">Quick Tip</p>
-                    <p id="daily-tip">Use PROC CONTENTS to verify dataset structure before analysis.</p>
+                    <p class="font-semibold mb-1 flex items-center gap-1">
+                        <i data-lucide="lightbulb" class="w-3 h-3"></i>
+                        Quick Tip
+                    </p>
+                    <p id="daily-tip" class="leading-relaxed">Use PROC CONTENTS to verify dataset structure before analysis.</p>
                 </div>
             </div>
         </aside>
 
         <!-- Main Content -->
         <main class="main-content flex-1 lg:ml-72 min-h-screen">
-            <!-- Hero Section -->
-            <div class="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white py-16 px-8 relative overflow-hidden">
+            <!-- Hero Section - Mobile Optimized -->
+            <div class="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white py-12 md:py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
                 <div class="absolute inset-0 opacity-10">
                     <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
                 </div>
-                <div class="max-w-5xl mx-auto relative z-10 animate-fade-in">
-                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6 border border-white/20">
+                <div class="max-w-5xl mx-auto relative z-10 animate-fade-in content-padding">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1.5 mb-4 md:mb-6 border border-white/20 text-sm">
                         <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                        <span class="text-sm font-medium">Complete Clinical Programming Reference</span>
+                        <span class="font-medium">Biostatistics and SAS Programming </span>
                     </div>
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                        Master <span class="text-blue-300">SAS Programming</span><br>
-                        for Biostatistics & Clinical Research
+                    <h1 class="hero-title font-bold mb-4 md:mb-6">
+    <span class="text-blue-300">SAS Programming and Biostatistics</span><br class="hidden sm:block">
+Guide
+
                     </h1>
-                    <p class="text-xl text-blue-100 max-w-2xl mb-8 leading-relaxed">
-                        Comprehensive guide covering basic to advanced SAS programming, statistical analysis, CDISC SDTM/ADaM standards, and survival analysis using official SAS datasets.
+                    <p class="text-base md:text-lg lg:text-xl text-blue-100 max-w-2xl mb-6 md:mb-8 leading-relaxed">
+                       This guide presents structured learning and practical examples of SAS programming used in biostatistics and clinical research.
                     </p>
                     
-                    <!-- Author Credit -->
-                    <div class="flex items-center gap-4 mb-8 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 max-w-fit">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    <!-- Author Credit - Responsive -->
+                    <div class="flex items-start sm:items-center gap-4 mb-6 md:mb-8 p-3 md:p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 max-w-full sm:max-w-fit">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg flex-shrink-0">
                             MP
                         </div>
-                        <div>
-                            <p class="font-semibold text-white">Created by Monu Prajapati</p>
-                            <p class="text-blue-200 text-sm">Biostatistician & Clinical SAS Programmer</p>
-                            
+                        <div class="min-w-0">
+                            <p class="font-semibold text-white text-sm md:text-base">Created by Monu Prajapati</p>
+                            <p class="text-blue-200 text-xs md:text-sm">Biostatistician | Statistical Programmer | SAS Programmer</p>
+                           
                         </div>
                     </div>
 
-                    <div class="flex flex-wrap gap-4">
-                        <button onclick="scrollToSection('section-1')" class="bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors flex items-center gap-2">
+                    <!-- Action Buttons - Responsive Grid -->
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-3">
+                        <button id="btn-start-learning" class="touch-target bg-white text-blue-900 px-4 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors flex items-center justify-center sm:justify-start gap-2 shadow-lg">
                             Start Learning <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
-                        <button onclick="scrollToSection('section-4')" class="bg-white/10 text-white border border-white/30 px-6 py-3 rounded-lg font-semibold hover:bg-white/20 transition-colors">
+                        <button id="btn-jump-stats-hero" class="touch-target bg-white/10 text-white border border-white/30 px-4 py-3 rounded-lg font-semibold hover:bg-white/20 transition-colors">
                             Jump to Statistics
                         </button>
-                        <button onclick="scrollToSection('section-5')" class="bg-green-500/20 text-green-300 border border-green-500/30 px-6 py-3 rounded-lg font-semibold hover:bg-green-500/30 transition-colors flex items-center gap-2">
+                        <button id="btn-jump-survival-hero" class="touch-target bg-green-500/20 text-green-300 border border-green-500/30 px-4 py-3 rounded-lg font-semibold hover:bg-green-500/30 transition-colors flex items-center justify-center sm:justify-start gap-2">
                             <i data-lucide="heart-pulse" class="w-4 h-4"></i> Survival Analysis
                         </button>
                     </div>
@@ -203,51 +519,51 @@
             </div>
 
             <!-- Content Container -->
-            <div class="max-w-5xl mx-auto px-6 py-12 space-y-16" id="content-container">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 space-y-12 md:space-y-16" id="content-container">
                 <!-- Content injected by JavaScript -->
             </div>
 
-            <!-- Footer -->
-            <footer class="bg-slate-900 text-slate-400 py-12 px-8 mt-20 border-t border-slate-800">
-                <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
+            <!-- Footer - Mobile Optimized -->
+            <footer class="bg-slate-900 text-slate-400 py-8 md:py-12 px-4 sm:px-6 lg:px-8 mt-12 md:mt-20 border-t border-slate-800">
+                <div class="max-w-5xl mx-auto footer-grid">
                     <div>
-                        <h3 class="text-white font-bold mb-4">SAS BioStat Guide</h3>
-                        <p class="text-sm">Professional educational resource for clinical research and biostatistics. Based on official SAS documentation and CDISC standards.</p>
+                        <h3 class="text-white font-bold mb-3 md:mb-4 text-lg">SAS BioStat Guide</h3>
+                        <p class="text-sm leading-relaxed">Educational SAS Programming Guide created for learning and practice in clinical SAS programming.</p>
                         <div class="mt-4 p-3 bg-slate-800 rounded-lg">
                             <p class="text-white font-semibold text-sm">Monu Prajapati</p>
-                            <p class="text-xs text-slate-400">Biostatistician</p>
+                            <p class="text-xs text-slate-400">Biostatistician | Statistical Programmer | SAS Programmer</p>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-white font-bold mb-4">CDISC Standards</h3>
+                        <h3 class="text-white font-bold mb-3 md:mb-4 text-lg">CDISC Standards</h3>
                         <ul class="space-y-2 text-sm">
-                            <li><code class="text-blue-400">SDTM</code> - Study Data Tabulation Model</li>
-                            <li><code class="text-blue-400">ADaM</code> - Analysis Data Model</li>
-                            <li><code class="text-blue-400">ADSL</code> - Subject Level Analysis</li>
-                            <li><code class="text-blue-400">ADAE</code> - Adverse Events Analysis</li>
-                            <li><code class="text-blue-400">ADVS</code> - Vital Signs Analysis</li>
+                            <li><code class="text-blue-400 bg-slate-800 px-1.5 py-0.5 rounded text-xs">SDTM</code> - Study Data Tabulation Model</li>
+                            <li><code class="text-blue-400 bg-slate-800 px-1.5 py-0.5 rounded text-xs">ADaM</code> - Analysis Data Model</li>
+                            <li><code class="text-blue-400 bg-slate-800 px-1.5 py-0.5 rounded text-xs">ADSL</code> - Subject Level Analysis</li>
+                            <li><code class="text-blue-400 bg-slate-800 px-1.5 py-0.5 rounded text-xs">ADAE</code> - Adverse Events Analysis</li>
+                            <li><code class="text-blue-400 bg-slate-800 px-1.5 py-0.5 rounded text-xs">ADVS</code> - Vital Signs Analysis</li>
                         </ul>
                     </div>
-                    <div>
-                        <h3 class="text-white font-bold mb-4">Key Procedures</h3>
+                    <div class="sm:col-span-2 lg:col-span-1">
+                        <h3 class="text-white font-bold mb-3 md:mb-4 text-lg">Key Procedures</h3>
                         <ul class="space-y-2 text-sm">
-                            <li><code class="text-green-400">PROC LIFETEST</code> - Survival curves</li>
-                            <li><code class="text-green-400">PROC PHREG</code> - Cox regression</li>
-                            <li><code class="text-blue-400">PROC LOGISTIC</code> - Binary outcomes</li>
-                            <li><code class="text-blue-400">PROC MIXED</code> - Mixed models</li>
+                            <li><code class="text-green-400 bg-slate-800 px-1.5 py-0.5 rounded text-xs">PROC LIFETEST</code> - Survival curves</li>
+                            <li><code class="text-green-400 bg-slate-800 px-1.5 py-0.5 rounded text-xs">PROC PHREG</code> - Cox regression</li>
+                            <li><code class="text-blue-400 bg-slate-800 px-1.5 py-0.5 rounded text-xs">PROC LOGISTIC</code> - Binary outcomes</li>
+                            <li><code class="text-blue-400 bg-slate-800 px-1.5 py-0.5 rounded text-xs">PROC MIXED</code> - Mixed models</li>
                         </ul>
                     </div>
                 </div>
-                <div class="max-w-5xl mx-auto mt-8 pt-8 border-t border-slate-800 text-center text-sm">
-                    <p>&copy; 2024 SAS Biostatistics Guide. Created by Monu Prajapati. Educational use only.</p>
+                <div class="max-w-5xl mx-auto mt-6 md:mt-8 pt-6 md:pt-8 border-t border-slate-800 text-center text-xs md:text-sm">
+                    <p>&copy; 2025 SAS Biostatistics Guide. Created by Monu Prajapati. Educational use only.</p>
                 </div>
             </footer>
         </main>
     </div>
 
-    <!-- Back to Top -->
-    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all hover:scale-110 no-print z-50" id="back-to-top" style="opacity: 0; pointer-events: none;">
-        <i data-lucide="chevron-up" class="w-6 h-6"></i>
+    <!-- Back to Top - Mobile Optimized -->
+    <button id="back-to-top" class="fixed bottom-4 right-4 md:bottom-8 md:right-8 bg-blue-600 text-white p-3 rounded-full shadow-xl hover:bg-blue-700 transition-all hover:scale-110 no-print z-50 touch-target flex items-center justify-center" style="opacity: 0; pointer-events: none;" aria-label="Back to top">
+        <i data-lucide="chevron-up" class="w-5 h-5 md:w-6 md:h-6"></i>
     </button>
 
     <script>
@@ -262,17 +578,17 @@
                         title: '1. SAS Libraries',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Libraries in SAS are storage locations for datasets. They allow you to organize and access data efficiently. Understanding libraries is fundamental to managing data in SAS clinical trials and research projects.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Libraries in SAS are storage locations for datasets. They allow you to organize and access data efficiently. Understanding libraries is fundamental to managing data in SAS clinical trials and research projects.</p>
                                 </div>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3">Syntax</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3">Syntax</h3>
                                 <pre class="language-sas"><code>/* Temporary library (WORK) - automatically created */
 /* Permanent library - user defined */
 LIBNAME libref 'path';</code></pre>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3 mt-6">Example: Creating a Permanent Library</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3 mt-4 md:mt-6">Example: Creating a Permanent Library</h3>
                                 <pre class="language-sas"><code>/* Create a permanent library pointing to your folder */
 LIBNAME mydata 'C:\\SAS_Projects\\Clinical_Data';
 
@@ -280,8 +596,8 @@ LIBNAME mydata 'C:\\SAS_Projects\\Clinical_Data';
 PROC DATASETS LIB=mydata;
 RUN;</code></pre>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3 mt-6">Using SASHELP Library</h3>
-                                <p class="text-slate-600 mb-4">The <strong>SASHELP</strong> library contains built-in sample datasets perfect for learning:</p>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3 mt-4 md:mt-6">Using SASHELP Library</h3>
+                                <p class="text-slate-600 mb-3 md:mb-4 text-sm md:text-base">The <strong>SASHELP</strong> library contains built-in sample datasets perfect for learning:</p>
                                 
                                 <pre class="language-sas"><code>/* View available datasets in SASHELP */
 PROC DATASETS LIB=sashelp;
@@ -291,24 +607,24 @@ RUN;
 PROC PRINT DATA=sashelp.class (OBS=5);
 RUN;</code></pre>
 
-                                <div class="bg-slate-50 rounded-lg p-6 mt-6 border border-slate-200">
-                                    <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2">
-                                        <i data-lucide="file-output" class="w-5 h-5 text-blue-600"></i>
+                                <div class="bg-slate-50 rounded-lg p-4 md:p-6 mt-4 md:mt-6 border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2 md:mb-3 flex items-center gap-2 text-sm md:text-base">
+                                        <i data-lucide="file-output" class="w-4 h-4 md:w-5 md:h-5 text-blue-600"></i>
                                         Output Interpretation
                                     </h4>
-                                    <ul class="space-y-2 text-slate-700">
+                                    <ul class="space-y-2 text-slate-700 text-sm md:text-base">
                                         <li><strong>WORK:</strong> Temporary storage, deleted when SAS session ends</li>
                                         <li><strong>Permanent libraries:</strong> Persist between sessions, essential for clinical data archiving</li>
                                         <li><strong>SASHELP:</strong> Read-only system library with educational datasets</li>
                                     </ul>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3 flex items-center gap-2">
-                                        <i data-lucide="activity" class="w-5 h-5"></i>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 flex items-center gap-2 text-sm md:text-base">
+                                        <i data-lucide="activity" class="w-4 h-4 md:w-5 md:h-5"></i>
                                         Clinical Example
                                     </h4>
-                                    <p class="text-green-800 mb-3">In a clinical trial, you might structure libraries as:</p>
+                                    <p class="text-green-800 mb-2 md:mb-3 text-sm md:text-base">In a clinical trial, you might structure libraries as:</p>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>LIBNAME rawdata 'C:\\Study123\\Raw_Data';
 LIBNAME derived 'C:\\Study123\\Derived_Data';
 LIBNAME analysis 'C:\\Study123\\Analysis_Data';</code></pre>
@@ -320,12 +636,12 @@ LIBNAME analysis 'C:\\Study123\\Analysis_Data';</code></pre>
                         title: '2. Creating Datasets',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Learn to create datasets from scratch using DATALINES and understand how to replicate operations on built-in datasets.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Learn to create datasets from scratch using DATALINES and understand how to replicate operations on built-in datasets.</p>
                                 </div>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3">Syntax</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3">Syntax</h3>
                                 <pre class="language-sas"><code>DATA dataset_name;
     INPUT variable1 $ variable2 ...;
     DATALINES;
@@ -333,7 +649,7 @@ LIBNAME analysis 'C:\\Study123\\Analysis_Data';</code></pre>
     ;
 RUN;</code></pre>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3 mt-6">Example: Creating Dataset with DATALINES</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3 mt-4 md:mt-6">Example: Creating Dataset with DATALINES</h3>
                                 <pre class="language-sas"><code>DATA patients;
     INPUT patient_id $ age gender $ treatment $ response $;
     DATALINES;
@@ -348,7 +664,7 @@ RUN;
 PROC PRINT DATA=patients;
 RUN;</code></pre>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3 mt-6">Same Operation on SASHELP.CLASS</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3 mt-4 md:mt-6">Same Operation on SASHELP.CLASS</h3>
                                 <pre class="language-sas"><code>/* Instead of creating data, we use existing dataset */
 DATA class_subset;
     SET sashelp.class;
@@ -360,28 +676,28 @@ PROC PRINT DATA=class_subset;
     VAR name sex age height weight bmi;
 RUN;</code></pre>
 
-                                <div class="overflow-x-auto mt-6">
+                                <div class="table-container mt-4 md:mt-6">
                                     <table class="clinical-table w-full text-sm">
                                         <thead>
                                             <tr>
-                                                <th class="p-3 text-left">Variable</th>
-                                                <th class="p-3 text-left">Description</th>
+                                                <th class="p-2 md:p-3 text-left">Variable</th>
+                                                <th class="p-2 md:p-3 text-left">Description</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr><td class="p-3">Name</td><td class="p-3">Student identifier</td></tr>
-                                            <tr><td class="p-3">Sex</td><td class="p-3">Gender (M/F)</td></tr>
-                                            <tr><td class="p-3">Age</td><td class="p-3">Age in years</td></tr>
-                                            <tr><td class="p-3">Height</td><td class="p-3">Height in inches</td></tr>
-                                            <tr><td class="p-3">Weight</td><td class="p-3">Weight in pounds</td></tr>
-                                            <tr><td class="p-3">BMI</td><td class="p-3">Body Mass Index (calculated)</td></tr>
+                                            <tr><td class="p-2 md:p-3">Name</td><td class="p-2 md:p-3">Student identifier</td></tr>
+                                            <tr><td class="p-2 md:p-3">Sex</td><td class="p-2 md:p-3">Gender (M/F)</td></tr>
+                                            <tr><td class="p-2 md:p-3">Age</td><td class="p-2 md:p-3">Age in years</td></tr>
+                                            <tr><td class="p-2 md:p-3">Height</td><td class="p-2 md:p-3">Height in inches</td></tr>
+                                            <tr><td class="p-2 md:p-3">Weight</td><td class="p-2 md:p-3">Weight in pounds</td></tr>
+                                            <tr><td class="p-2 md:p-3">BMI</td><td class="p-2 md:p-3">Body Mass Index (calculated)</td></tr>
                                         </tbody>
                                     </table>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
-                                    <p class="text-green-800 mb-3">Creating an adverse events dataset:</p>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
+                                    <p class="text-green-800 mb-2 md:mb-3 text-sm md:text-base">Creating an adverse events dataset:</p>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>DATA ae_report;
     INPUT subject_id $ ae_term $ severity $ onset_date :DATE9.;
     FORMAT onset_date DATE9.;
@@ -399,12 +715,12 @@ RUN;</code></pre>
                         title: '3. Importing Data',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Import external data files (Excel, CSV, text) into SAS for analysis. Critical for clinical data integration.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Import external data files (Excel, CSV, text) into SAS for analysis. Critical for clinical data integration.</p>
                                 </div>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3">Syntax</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3">Syntax</h3>
                                 <pre class="language-sas"><code>PROC IMPORT DATAFILE="filepath"
     OUT=dataset_name
     DBMS=excel|csv|tab REPLACE;
@@ -412,7 +728,7 @@ RUN;</code></pre>
     GETNAMES=YES;
 RUN;</code></pre>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3 mt-6">Example: Importing Excel File</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3 mt-4 md:mt-6">Example: Importing Excel File</h3>
                                 <pre class="language-sas"><code>PROC IMPORT DATAFILE="C:\\Data\\clinical_data.xlsx"
     OUT=clinical_import
     DBMS=excel REPLACE;
@@ -423,7 +739,7 @@ RUN;
 PROC PRINT DATA=clinical_import (OBS=10);
 RUN;</code></pre>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3 mt-6">Comparison with SASHELP Dataset</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3 mt-4 md:mt-6">Comparison with SASHELP Dataset</h3>
                                 <pre class="language-sas"><code>/* Import vs Built-in dataset structure comparison */
 PROC CONTENTS DATA=clinical_import VARNUM;
 RUN;
@@ -431,18 +747,18 @@ RUN;
 PROC CONTENTS DATA=sashelp.class VARNUM;
 RUN;</code></pre>
 
-                                <div class="bg-slate-50 rounded-lg p-6 mt-6 border border-slate-200">
-                                    <h4 class="font-bold text-slate-900 mb-3">Output Interpretation</h4>
-                                    <ul class="space-y-2 text-slate-700">
+                                <div class="bg-slate-50 rounded-lg p-4 md:p-6 mt-4 md:mt-6 border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2 md:mb-3 text-sm md:text-base">Output Interpretation</h4>
+                                    <ul class="space-y-2 text-slate-700 text-sm md:text-base">
                                         <li><strong>PROC IMPORT:</strong> Automatically determines variable types</li>
                                         <li><strong>SASHELP datasets:</strong> Pre-formatted, clean, ready for analysis</li>
                                         <li>Always verify variable attributes after import using PROC CONTENTS</li>
                                     </ul>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
-                                    <p class="text-green-800 mb-3">Importing lab results from CSV:</p>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
+                                    <p class="text-green-800 mb-2 md:mb-3 text-sm md:text-base">Importing lab results from CSV:</p>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC IMPORT DATAFILE="C:\\Study123\\Lab_Results.csv"
     OUT=lab_data
     DBMS=csv REPLACE;
@@ -457,9 +773,9 @@ RUN;</code></pre>
                         title: '4. Exporting Data',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Save SAS datasets to external formats for sharing results, regulatory submissions, or further analysis.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Save SAS datasets to external formats for sharing results, regulatory submissions, or further analysis.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>/* Create analysis results */
@@ -476,9 +792,9 @@ PROC EXPORT DATA=class_stats
     SHEET="Summary_Stats";
 RUN;</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
-                                    <p class="text-green-800 mb-3">Exporting safety analysis for regulatory submission:</p>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
+                                    <p class="text-green-800 mb-2 md:mb-3 text-sm md:text-base">Exporting safety analysis for regulatory submission:</p>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC EXPORT DATA=safety_summary
     OUTFILE="C:\\Submissions\\Study123\\Safety_Table.xlsx"
     DBMS=excel REPLACE;
@@ -492,9 +808,9 @@ RUN;</code></pre>
                         title: '5. Viewing Data',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Examine dataset contents, structure, and metadata. Essential for data validation in clinical research.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Examine dataset contents, structure, and metadata. Essential for data validation in clinical research.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>/* View first 10 observations */
@@ -506,19 +822,19 @@ RUN;
 PROC CONTENTS DATA=sashelp.class VARNUM;
 RUN;</code></pre>
 
-                                <div class="bg-slate-50 rounded-lg p-6 mt-6 border border-slate-200">
-                                    <h4 class="font-bold text-slate-900 mb-3">PROC PRINT Output Example</h4>
-                                    <div class="font-mono text-sm bg-white p-4 rounded border border-slate-300 overflow-x-auto">
+                                <div class="bg-slate-50 rounded-lg p-4 md:p-6 mt-4 md:mt-6 border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2 md:mb-3 text-sm md:text-base">PROC PRINT Output Example</h4>
+                                    <div class="font-mono text-xs md:text-sm bg-white p-3 md:p-4 rounded border border-slate-300 overflow-x-auto">
                                         <table class="w-full">
-                                            <tr class="border-b"><th class="text-left p-2">Name</th><th class="text-left p-2">Sex</th><th class="text-left p-2">Age</th><th class="text-left p-2">Height</th><th class="text-left p-2">Weight</th></tr>
-                                            <tr><td class="p-2">Alfred</td><td class="p-2">M</td><td class="p-2">14</td><td class="p-2">69.0</td><td class="p-2">112.5</td></tr>
-                                            <tr><td class="p-2">Alice</td><td class="p-2">F</td><td class="p-2">13</td><td class="p-2">56.5</td><td class="p-2">84.0</td></tr>
+                                            <tr class="border-b"><th class="text-left p-1 md:p-2">Name</th><th class="text-left p-1 md:p-2">Sex</th><th class="text-left p-1 md:p-2">Age</th><th class="text-left p-1 md:p-2">Height</th><th class="text-left p-1 md:p-2">Weight</th></tr>
+                                            <tr><td class="p-1 md:p-2">Alfred</td><td class="p-1 md:p-2">M</td><td class="p-1 md:p-2">14</td><td class="p-1 md:p-2">69.0</td><td class="p-1 md:p-2">112.5</td></tr>
+                                            <tr><td class="p-1 md:p-2">Alice</td><td class="p-1 md:p-2">F</td><td class="p-1 md:p-2">13</td><td class="p-1 md:p-2">56.5</td><td class="p-1 md:p-2">84.0</td></tr>
                                         </table>
                                     </div>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>/* Check incoming data structure */
 PROC CONTENTS DATA=rawdata.demographics;
 RUN;
@@ -535,9 +851,9 @@ RUN;</code></pre>
                         title: '6. Subsetting Data',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Select specific observations or variables to create analysis-ready datasets. Fundamental for inclusion/exclusion criteria in clinical trials.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Select specific observations or variables to create analysis-ready datasets. Fundamental for inclusion/exclusion criteria in clinical trials.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>/* Subset students older than 14 */
@@ -552,9 +868,9 @@ DATA male_students;
     IF sex = 'M';
 RUN;</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
-                                    <p class="text-green-800 mb-3">Applying inclusion criteria:</p>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
+                                    <p class="text-green-800 mb-2 md:mb-3 text-sm md:text-base">Applying inclusion criteria:</p>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>/* Include patients 18-65 years with valid baseline */
 DATA analysis_set;
     SET rawdata.patients;
@@ -569,9 +885,9 @@ RUN;</code></pre>
                         title: '7. Sorting Data',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Arrange observations in a specific order. Required for merging datasets and creating ordered reports.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Arrange observations in a specific order. Required for merging datasets and creating ordered reports.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>/* Sort by gender then age */
@@ -586,8 +902,8 @@ PROC SORT DATA=sashelp.class
     BY DESCENDING weight;
 RUN;</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC SORT DATA=adverse_events
     OUT=ae_sorted;
     BY subject_id DESCENDING severity_code event_date;
@@ -607,9 +923,9 @@ RUN;</code></pre>
                         title: '1. Merging Datasets',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Combine data from multiple sources horizontally (adding variables). Essential for integrating clinical data domains.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Combine data from multiple sources horizontally (adding variables). Essential for integrating clinical data domains.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>/* Create two datasets from sashelp.class */
@@ -638,8 +954,8 @@ DATA class_complete;
     BY name;
 RUN;</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC SORT DATA=demographics;
     BY subject_id;
 RUN;
@@ -661,9 +977,9 @@ RUN;</code></pre>
                         title: '2. PROC FORMAT',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Create user-defined formats for displaying values. Critical for coding clinical data (e.g., converting numeric codes to text labels).</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Create user-defined formats for displaying values. Critical for coding clinical data (e.g., converting numeric codes to text labels).</p>
                                 </div>
 
                                 <pre class="language-sas"><code>PROC FORMAT;
@@ -683,8 +999,8 @@ DATA class_formatted;
     age_group = PUT(age, agegroup.);
 RUN;</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC FORMAT;
     VALUE severity
         1 = 'Mild'
@@ -700,9 +1016,9 @@ RUN;</code></pre>
                         title: '3. SAS Functions',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Perform calculations and data transformations efficiently. Essential for derived variables in clinical datasets.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Perform calculations and data transformations efficiently. Essential for derived variables in clinical datasets.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>DATA class_functions;
@@ -721,37 +1037,37 @@ RUN;</code></pre>
     bmi = ROUND(weight / (height/39.37)**2, 0.01);
 RUN;</code></pre>
 
-                                <div class="overflow-x-auto mt-6">
+                                <div class="table-container mt-4 md:mt-6">
                                     <table class="clinical-table w-full text-sm">
                                         <thead>
                                             <tr>
-                                                <th class="p-3 text-left">Function</th>
-                                                <th class="p-3 text-left">Purpose</th>
-                                                <th class="p-3 text-left">Example Result</th>
+                                                <th class="p-2 md:p-3 text-left">Function</th>
+                                                <th class="p-2 md:p-3 text-left">Purpose</th>
+                                                <th class="p-2 md:p-3 text-left">Example Result</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td class="p-3 font-mono">MEAN</td>
-                                                <td class="p-3">Average of arguments</td>
-                                                <td class="p-3">90.75 (avg of height & weight)</td>
+                                                <td class="p-2 md:p-3 font-mono">MEAN</td>
+                                                <td class="p-2 md:p-3">Average of arguments</td>
+                                                <td class="p-2 md:p-3">90.75 (avg of height & weight)</td>
                                             </tr>
                                             <tr>
-                                                <td class="p-3 font-mono">SUM</td>
-                                                <td class="p-3">Total of arguments</td>
-                                                <td class="p-3">195.5 (112.5+69+14)</td>
+                                                <td class="p-2 md:p-3 font-mono">SUM</td>
+                                                <td class="p-2 md:p-3">Total of arguments</td>
+                                                <td class="p-2 md:p-3">195.5 (112.5+69+14)</td>
                                             </tr>
                                             <tr>
-                                                <td class="p-3 font-mono">ROUND</td>
-                                                <td class="p-3">Round to specified precision</td>
-                                                <td class="p-3">175.3 cm</td>
+                                                <td class="p-2 md:p-3 font-mono">ROUND</td>
+                                                <td class="p-2 md:p-3">Round to specified precision</td>
+                                                <td class="p-2 md:p-3">175.3 cm</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example: BMI Calculation</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example: BMI Calculation</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>DATA clinical_bmi;
     SET rawdata.vitals;
     height_m = height_cm / 100;
@@ -771,9 +1087,9 @@ RUN;</code></pre>
                         title: '4. DO Loops',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Iterate through statements multiple times. Useful for generating sequences and performing repetitive calculations.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Iterate through statements multiple times. Useful for generating sequences and performing repetitive calculations.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>/* Create growth projections */
@@ -789,8 +1105,8 @@ DATA growth_projection;
     KEEP name sex age year projected_age projected_height;
 RUN;</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example: Visit Schedule</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example: Visit Schedule</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>DATA visit_schedule;
     SET enrollment;
     
@@ -810,9 +1126,9 @@ RUN;</code></pre>
                         title: '5. Arrays',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Process multiple variables with similar names efficiently. Essential for scoring questionnaires or processing lab panels.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Process multiple variables with similar names efficiently. Essential for scoring questionnaires or processing lab panels.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>DATA class_arrays;
@@ -830,8 +1146,8 @@ RUN;</code></pre>
     DROP mean_h sd_h mean_w sd_w;
 RUN;</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example: Questionnaire Scoring</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example: Questionnaire Scoring</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>DATA depression_score;
     SET questionnaire;
     
@@ -853,9 +1169,9 @@ RUN;</code></pre>
                         title: '6. Macro Basics',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Create reusable code components. Macros reduce repetitive coding and standardize analyses across clinical studies.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Create reusable code components. Macros reduce repetitive coding and standardize analyses across clinical studies.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>%MACRO print_subset(criteria, title);
@@ -870,8 +1186,8 @@ RUN;</code></pre>
 %print_subset(age > 14, Students Older Than 14);
 %print_subset(sex = 'F', Female Students);</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>%MACRO safety_table(domain, severity_var);
     PROC FREQ DATA=adverse_events;
         TABLES treatment*&severity_var / CHISQ;
@@ -890,9 +1206,9 @@ RUN;</code></pre>
                         title: '7. Missing Value Handling',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Identify, count, and handle missing values appropriately. Critical for clinical data integrity.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Identify, count, and handle missing values appropriately. Critical for clinical data integrity.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>/* Analyze missing patterns */
@@ -911,8 +1227,8 @@ DATA class_imputed;
     IF MISSING(height) THEN height = 62;
 RUN;</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>DATA lab_clean;
     SET rawdata.labs;
     
@@ -939,9 +1255,9 @@ RUN;</code></pre>
                         title: '1. Advanced Macro Programming',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Create sophisticated, dynamic programs with macro variables and loops. Essential for standardized clinical programming.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Create sophisticated, dynamic programs with macro variables and loops. Essential for standardized clinical programming.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>/* Create macro variables */
@@ -964,8 +1280,8 @@ RUN;</code></pre>
 
 %group_analysis(F M);</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>%MACRO analyze_endpoints(endpoint_list, timepoint);
     %DO i = 1 %TO %SYSFUNC(COUNTW(&endpoint_list));
         %LET endpoint = %SCAN(&endpoint_list, &i);
@@ -991,9 +1307,9 @@ RUN;</code></pre>
                         title: '2. PROC SQL',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Use SQL syntax within SAS for data manipulation. Powerful for complex joins and aggregations.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Use SQL syntax within SAS for data manipulation. Powerful for complex joins and aggregations.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>PROC SQL;
@@ -1017,8 +1333,8 @@ GROUP BY sex;
 
 QUIT;</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example: ADaM Dataset</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example: ADaM Dataset</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC SQL;
 CREATE TABLE adsl AS
 SELECT d.subject_id, d.age, d.sex, d.race,
@@ -1037,9 +1353,9 @@ QUIT;</code></pre>
                         title: '3. ODS Reporting',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Export SAS output to various formats (Excel, PDF, RTF) for regulatory submissions and publications.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Export SAS output to various formats (Excel, PDF, RTF) for regulatory submissions and publications.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>/* Excel output */
@@ -1059,8 +1375,8 @@ RUN;
 
 ODS EXCEL CLOSE;</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example: CSR Tables</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example: CSR Tables</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>ODS EXCEL FILE="C:\\CSR\\Table_14_1_1.xlsx";
 
 PROC TABULATE DATA=adsl;
@@ -1084,32 +1400,32 @@ ODS EXCEL CLOSE;</code></pre>
                         title: '4. CDISC Standards & Clinical Datasets',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">CDISC Standards Overview</h4>
-                                    <p class="text-blue-800">CDISC (Clinical Data Interchange Standards Consortium) standards are required by FDA and PMDA for regulatory submissions. Mastering these is essential for clinical SAS programmers.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">CDISC Standards Overview</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">CDISC (Clinical Data Interchange Standards Consortium) standards are required by FDA and PMDA for regulatory submissions. Mastering these is essential for clinical SAS programmers.</p>
                                 </div>
 
-                                <div class="grid md:grid-cols-2 gap-6 mb-6">
-                                    <div class="bg-white border border-slate-200 rounded-lg p-4">
-                                        <h4 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                <div class="responsive-grid mb-4 md:mb-6">
+                                    <div class="bg-white border border-slate-200 rounded-lg p-3 md:p-4">
+                                        <h4 class="font-bold text-slate-900 mb-2 flex items-center gap-2 text-sm md:text-base">
                                             <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
                                             SDTM (Study Data Tabulation Model)
                                         </h4>
-                                        <p class="text-sm text-slate-600">Standardized structure for submitting raw clinical trial data to regulators.</p>
-                                        <ul class="mt-2 text-sm text-slate-700 space-y-1">
+                                        <p class="text-xs md:text-sm text-slate-600">Standardized structure for submitting raw clinical trial data to regulators.</p>
+                                        <ul class="mt-2 text-xs md:text-sm text-slate-700 space-y-1">
                                             <li>• DM (Demographics)</li>
                                             <li>• AE (Adverse Events)</li>
                                             <li>• LB (Laboratory Results)</li>
                                             <li>• VS (Vital Signs)</li>
                                         </ul>
                                     </div>
-                                    <div class="bg-white border border-slate-200 rounded-lg p-4">
-                                        <h4 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                    <div class="bg-white border border-slate-200 rounded-lg p-3 md:p-4">
+                                        <h4 class="font-bold text-slate-900 mb-2 flex items-center gap-2 text-sm md:text-base">
                                             <span class="w-2 h-2 bg-green-500 rounded-full"></span>
                                             ADaM (Analysis Data Model)
                                         </h4>
-                                        <p class="text-sm text-slate-600">Analysis-ready datasets derived from SDTM for statistical analysis.</p>
-                                        <ul class="mt-2 text-sm text-slate-700 space-y-1">
+                                        <p class="text-xs md:text-sm text-slate-600">Analysis-ready datasets derived from SDTM for statistical analysis.</p>
+                                        <ul class="mt-2 text-xs md:text-sm text-slate-700 space-y-1">
                                             <li>• ADSL (Subject Level)</li>
                                             <li>• ADAE (Adverse Events)</li>
                                             <li>• ADVS (Vital Signs)</li>
@@ -1118,7 +1434,7 @@ ODS EXCEL CLOSE;</code></pre>
                                     </div>
                                 </div>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3">ADSL (Analysis Data Subject Level)</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3">ADSL (Analysis Data Subject Level)</h3>
                                 <pre class="language-sas"><code>/* ADSL - The cornerstone ADaM dataset */
 DATA adsl;
     /* Key variables required by CDISC */
@@ -1149,7 +1465,7 @@ DATA adsl;
     FORMAT randdt trtsdt trtedt date9.;
 RUN;</code></pre>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3 mt-6">ADAE (Analysis Data Adverse Events)</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3 mt-4 md:mt-6">ADAE (Analysis Data Adverse Events)</h3>
                                 <pre class="language-sas"><code>/* ADAE - Adverse Events Analysis Dataset */
 DATA adae;
     LENGTH aedecod $ 200 aebodsys $ 200 
@@ -1175,7 +1491,7 @@ DATA adae;
     aebodsys = aebodsys; /* System Organ Class */
 RUN;</code></pre>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3 mt-6">ADVS (Analysis Data Vital Signs)</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3 mt-4 md:mt-6">ADVS (Analysis Data Vital Signs)</h3>
                                 <pre class="language-sas"><code>/* ADVS - Vital Signs Analysis Dataset */
 DATA advs;
     MERGE sdtm.vs adsl(keep=usubjid trt01p trt01pn);
@@ -1209,12 +1525,12 @@ DATA advs;
         pchg = (chg / base) * 100;
 RUN;</code></pre>
 
-                                <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-amber-900 mb-3 flex items-center gap-2">
-                                        <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                                <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-amber-900 mb-2 md:mb-3 flex items-center gap-2 text-sm md:text-base">
+                                        <i data-lucide="alert-triangle" class="w-4 h-4 md:w-5 md:h-5"></i>
                                         CDISC Compliance Checklist
                                     </h4>
-                                    <ul class="space-y-2 text-amber-800 text-sm">
+                                    <ul class="space-y-1 md:space-y-2 text-amber-800 text-xs md:text-sm">
                                         <li>✓ Use standardized variable names (USUBJID, not Subject_ID)</li>
                                         <li>✓ Include required variables: STUDYID, USUBJID, SUBJID, SITEID</li>
                                         <li>✓ Use controlled terminology (NY for Yes/No, not Y/N)</li>
@@ -1237,9 +1553,9 @@ RUN;</code></pre>
                         badge: 'sashelp.class',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Calculate summary statistics (mean, standard deviation, minimum, maximum, median) for continuous variables. Foundation of all statistical analysis.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Calculate summary statistics (mean, standard deviation, minimum, maximum, median) for continuous variables. Foundation of all statistical analysis.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>PROC MEANS DATA=sashelp.class N MEAN STD MIN MAX MEDIAN;
@@ -1254,24 +1570,24 @@ PROC MEANS DATA=sashelp.class N MEAN STD MIN MAX;
     TITLE "Descriptive Statistics by Gender";
 RUN;</code></pre>
 
-                                <div class="bg-slate-50 rounded-lg p-6 mt-6 border border-slate-200">
-                                    <h4 class="font-bold text-slate-900 mb-3">Output Interpretation</h4>
-                                    <div class="font-mono text-sm bg-white p-4 rounded border border-slate-300 overflow-x-auto">
-                                        <table class="w-full text-xs">
-                                            <tr class="border-b font-bold"><td class="p-2">Variable</td><td class="p-2">N</td><td class="p-2">Mean</td><td class="p-2">Std Dev</td><td class="p-2">Minimum</td><td class="p-2">Maximum</td></tr>
-                                            <tr class="border-b"><td class="p-2">height</td><td class="p-2">19</td><td class="p-2">62.34</td><td class="p-2">5.13</td><td class="p-2">51.30</td><td class="p-2">72.00</td></tr>
-                                            <tr><td class="p-2">weight</td><td class="p-2">19</td><td class="p-2">100.03</td><td class="p-2">22.77</td><td class="p-2">50.50</td><td class="p-2">150.00</td></tr>
+                                <div class="bg-slate-50 rounded-lg p-4 md:p-6 mt-4 md:mt-6 border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2 md:mb-3 text-sm md:text-base">Output Interpretation</h4>
+                                    <div class="font-mono text-xs md:text-sm bg-white p-3 md:p-4 rounded border border-slate-300 overflow-x-auto">
+                                        <table class="w-full">
+                                            <tr class="border-b font-bold"><td class="p-1 md:p-2">Variable</td><td class="p-1 md:p-2">N</td><td class="p-1 md:p-2">Mean</td><td class="p-1 md:p-2">Std Dev</td><td class="p-1 md:p-2">Minimum</td><td class="p-1 md:p-2">Maximum</td></tr>
+                                            <tr class="border-b"><td class="p-1 md:p-2">height</td><td class="p-1 md:p-2">19</td><td class="p-1 md:p-2">62.34</td><td class="p-1 md:p-2">5.13</td><td class="p-1 md:p-2">51.30</td><td class="p-1 md:p-2">72.00</td></tr>
+                                            <tr><td class="p-1 md:p-2">weight</td><td class="p-1 md:p-2">19</td><td class="p-1 md:p-2">100.03</td><td class="p-1 md:p-2">22.77</td><td class="p-1 md:p-2">50.50</td><td class="p-1 md:p-2">150.00</td></tr>
                                         </table>
                                     </div>
-                                    <ul class="mt-4 space-y-1 text-sm text-slate-700">
+                                    <ul class="mt-3 md:mt-4 space-y-1 md:space-y-2 text-xs md:text-sm text-slate-700">
                                         <li><strong>N:</strong> Sample size (19 students)</li>
                                         <li><strong>Mean:</strong> Average value</li>
                                         <li><strong>Std Dev:</strong> Variability measure</li>
                                     </ul>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC MEANS DATA=adsl N MEAN STD MEDIAN MIN MAX;
     CLASS trt01p;
     VAR age weight height bmi;
@@ -1286,9 +1602,9 @@ RUN;</code></pre>
                         badge: 'sashelp.heart',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Analyze categorical variables. Calculate counts, percentages, and perform chi-square tests. Essential for demographic tables and safety analysis.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Analyze categorical variables. Calculate counts, percentages, and perform chi-square tests. Essential for demographic tables and safety analysis.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>PROC FREQ DATA=sashelp.heart;
@@ -1301,19 +1617,19 @@ PROC FREQ DATA=sashelp.heart;
     TITLE "Gender vs Survival Status";
 RUN;</code></pre>
 
-                                <div class="bg-slate-50 rounded-lg p-6 mt-6 border border-slate-200">
-                                    <h4 class="font-bold text-slate-900 mb-3">Output Interpretation</h4>
-                                    <div class="font-mono text-sm bg-white p-4 rounded border border-slate-300">
-                                        <table class="w-full text-xs">
-                                            <tr class="border-b font-bold"><td class="p-2">sex</td><td class="p-2">Frequency</td><td class="p-2">Percent</td></tr>
-                                            <tr class="border-b"><td class="p-2">F</td><td class="p-2">9</td><td class="p-2">47.37</td></tr>
-                                            <tr><td class="p-2">M</td><td class="p-2">10</td><td class="p-2">52.63</td></tr>
+                                <div class="bg-slate-50 rounded-lg p-4 md:p-6 mt-4 md:mt-6 border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2 md:mb-3 text-sm md:text-base">Output Interpretation</h4>
+                                    <div class="font-mono text-xs md:text-sm bg-white p-3 md:p-4 rounded border border-slate-300">
+                                        <table class="w-full">
+                                            <tr class="border-b font-bold"><td class="p-1 md:p-2">sex</td><td class="p-1 md:p-2">Frequency</td><td class="p-1 md:p-2">Percent</td></tr>
+                                            <tr class="border-b"><td class="p-1 md:p-2">F</td><td class="p-1 md:p-2">9</td><td class="p-1 md:p-2">47.37</td></tr>
+                                            <tr><td class="p-1 md:p-2">M</td><td class="p-1 md:p-2">10</td><td class="p-1 md:p-2">52.63</td></tr>
                                         </table>
                                     </div>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC FREQ DATA=adae;
     TABLES trt01p * aebodsys / CHISQ CMH;
     WHERE aeser = 'Y'; /* Serious events only */
@@ -1328,9 +1644,9 @@ RUN;</code></pre>
                         badge: 'sashelp.class',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Test if data follows normal distribution. Required assumption for parametric tests (t-test, ANOVA).</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Test if data follows normal distribution. Required assumption for parametric tests (t-test, ANOVA).</p>
                                 </div>
 
                                 <pre class="language-sas"><code>PROC UNIVARIATE DATA=sashelp.class NORMAL;
@@ -1340,17 +1656,17 @@ RUN;</code></pre>
     TITLE "Normality Assessment: Weight";
 RUN;</code></pre>
 
-                                <div class="bg-slate-50 rounded-lg p-6 mt-6 border border-slate-200">
-                                    <h4 class="font-bold text-slate-900 mb-3">Shapiro-Wilk Test Interpretation</h4>
-                                    <ul class="space-y-2 text-slate-700">
+                                <div class="bg-slate-50 rounded-lg p-4 md:p-6 mt-4 md:mt-6 border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2 md:mb-3 text-sm md:text-base">Shapiro-Wilk Test Interpretation</h4>
+                                    <ul class="space-y-1 md:space-y-2 text-slate-700 text-sm md:text-base">
                                         <li><strong>Null Hypothesis:</strong> Data is normally distributed</li>
                                         <li><strong>p-value > 0.05:</strong> Fail to reject null (normal distribution assumed)</li>
                                         <li><strong>p-value < 0.05:</strong> Reject null (use non-parametric tests)</li>
                                     </ul>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC UNIVARIATE DATA=adlb NORMAL;
     VAR aval;
     BY paramcd;
@@ -1366,9 +1682,9 @@ RUN;</code></pre>
                         badge: 'sashelp.class',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Compare means between two groups. Used for continuous endpoints in randomized trials.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Compare means between two groups. Used for continuous endpoints in randomized trials.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>PROC TTEST DATA=sashelp.class;
@@ -1377,20 +1693,20 @@ RUN;</code></pre>
     TITLE "Gender Comparison: Height and Weight";
 RUN;</code></pre>
 
-                                <div class="bg-slate-50 rounded-lg p-6 mt-6 border border-slate-200">
-                                    <h4 class="font-bold text-slate-900 mb-3">Output Interpretation</h4>
-                                    <div class="font-mono text-sm bg-white p-4 rounded border border-slate-300">
-                                        <table class="w-full text-xs">
-                                            <tr class="border-b font-bold"><td class="p-2">Method</td><td class="p-2">Variances</td><td class="p-2">DF</td><td class="p-2">t Value</td><td class="p-2">Pr > |t|</td></tr>
-                                            <tr class="border-b"><td class="p-2">Pooled</td><td class="p-2">Equal</td><td class="p-2">17</td><td class="p-2">3.05</td><td class="p-2">0.0071</td></tr>
-                                            <tr><td class="p-2">Satterthwaite</td><td class="p-2">Unequal</td><td class="p-2">16.9</td><td class="p-2">3.05</td><td class="p-2">0.0072</td></tr>
+                                <div class="bg-slate-50 rounded-lg p-4 md:p-6 mt-4 md:mt-6 border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2 md:mb-3 text-sm md:text-base">Output Interpretation</h4>
+                                    <div class="font-mono text-xs md:text-sm bg-white p-3 md:p-4 rounded border border-slate-300 overflow-x-auto">
+                                        <table class="w-full">
+                                            <tr class="border-b font-bold"><td class="p-1 md:p-2">Method</td><td class="p-1 md:p-2">Variances</td><td class="p-1 md:p-2">DF</td><td class="p-1 md:p-2">t Value</td><td class="p-1 md:p-2">Pr > |t|</td></tr>
+                                            <tr class="border-b"><td class="p-1 md:p-2">Pooled</td><td class="p-1 md:p-2">Equal</td><td class="p-1 md:p-2">17</td><td class="p-1 md:p-2">3.05</td><td class="p-1 md:p-2">0.0071</td></tr>
+                                            <tr><td class="p-1 md:p-2">Satterthwaite</td><td class="p-1 md:p-2">Unequal</td><td class="p-1 md:p-2">16.9</td><td class="p-1 md:p-2">3.05</td><td class="p-1 md:p-2">0.0072</td></tr>
                                         </table>
                                     </div>
-                                    <p class="mt-4 text-sm text-slate-700"><strong>Interpretation:</strong> p-value (0.007) < 0.05 indicates significant difference between male and female weights.</p>
+                                    <p class="mt-3 md:mt-4 text-xs md:text-sm text-slate-700"><strong>Interpretation:</strong> p-value (0.007) < 0.05 indicates significant difference between male and female weights.</p>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC TTEST DATA=advs;
     CLASS trt01p;
     VAR aval;
@@ -1406,9 +1722,9 @@ RUN;</code></pre>
                         badge: 'sashelp.heart',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Test association between two categorical variables. Used for binary endpoints and safety comparisons.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Test association between two categorical variables. Used for binary endpoints and safety comparisons.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>PROC FREQ DATA=sashelp.heart;
@@ -1416,20 +1732,20 @@ RUN;</code></pre>
     TITLE "Association: Gender vs Survival Status";
 RUN;</code></pre>
 
-                                <div class="bg-slate-50 rounded-lg p-6 mt-6 border border-slate-200">
-                                    <h4 class="font-bold text-slate-900 mb-3">Output Interpretation</h4>
-                                    <div class="font-mono text-sm bg-white p-4 rounded border border-slate-300">
-                                        <table class="w-full text-xs">
-                                            <tr class="border-b font-bold"><td class="p-2">Statistic</td><td class="p-2">DF</td><td class="p-2">Value</td><td class="p-2">Prob</td></tr>
-                                            <tr class="border-b"><td class="p-2">Chi-Square</td><td class="p-2">1</td><td class="p-2">4.8924</td><td class="p-2">0.0270</td></tr>
-                                            <tr><td class="p-2">Likelihood Ratio</td><td class="p-2">1</td><td class="p-2">4.9827</td><td class="p-2">0.0256</td></tr>
+                                <div class="bg-slate-50 rounded-lg p-4 md:p-6 mt-4 md:mt-6 border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2 md:mb-3 text-sm md:text-base">Output Interpretation</h4>
+                                    <div class="font-mono text-xs md:text-sm bg-white p-3 md:p-4 rounded border border-slate-300 overflow-x-auto">
+                                        <table class="w-full">
+                                            <tr class="border-b font-bold"><td class="p-1 md:p-2">Statistic</td><td class="p-1 md:p-2">DF</td><td class="p-1 md:p-2">Value</td><td class="p-1 md:p-2">Prob</td></tr>
+                                            <tr class="border-b"><td class="p-1 md:p-2">Chi-Square</td><td class="p-1 md:p-2">1</td><td class="p-1 md:p-2">4.8924</td><td class="p-1 md:p-2">0.0270</td></tr>
+                                            <tr><td class="p-1 md:p-2">Likelihood Ratio</td><td class="p-1 md:p-2">1</td><td class="p-1 md:p-2">4.9827</td><td class="p-1 md:p-2">0.0256</td></tr>
                                         </table>
                                     </div>
-                                    <p class="mt-4 text-sm text-slate-700"><strong>p-value = 0.027</strong> < 0.05 indicates significant association between gender and survival status.</p>
+                                    <p class="mt-3 md:mt-4 text-xs md:text-sm text-slate-700"><strong>p-value = 0.027</strong> < 0.05 indicates significant association between gender and survival status.</p>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC FREQ DATA=adef;
     TABLES trt01p * responder / CHISQ;
     WHERE paramcd = 'PAIN';
@@ -1444,9 +1760,9 @@ RUN;</code></pre>
                         badge: 'sashelp.class',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Compare means across three or more groups. Used for multi-arm trials and dose-response analysis.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Compare means across three or more groups. Used for multi-arm trials and dose-response analysis.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>/* Create age groups */
@@ -1465,8 +1781,8 @@ PROC GLM DATA=class_agegroups;
     TITLE "Weight Comparison Across Age Groups";
 RUN;</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC GLM DATA=adef;
     CLASS trtpn; /* Placebo, Low, Medium, High */
     MODEL aval = trtpn;
@@ -1482,9 +1798,9 @@ RUN;</code></pre>
                         badge: 'sashelp.class',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Measure linear association between continuous variables. Used for biomarker validation and surrogate endpoint analysis.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Measure linear association between continuous variables. Used for biomarker validation and surrogate endpoint analysis.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>PROC CORR DATA=sashelp.class PEARSON SPEARMAN;
@@ -1492,21 +1808,21 @@ RUN;</code></pre>
     TITLE "Correlation Matrix: Physical Measurements";
 RUN;</code></pre>
 
-                                <div class="bg-slate-50 rounded-lg p-6 mt-6 border border-slate-200">
-                                    <h4 class="font-bold text-slate-900 mb-3">Output Interpretation</h4>
-                                    <div class="font-mono text-sm bg-white p-4 rounded border border-slate-300">
+                                <div class="bg-slate-50 rounded-lg p-4 md:p-6 mt-4 md:mt-6 border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2 md:mb-3 text-sm md:text-base">Output Interpretation</h4>
+                                    <div class="font-mono text-xs md:text-sm bg-white p-3 md:p-4 rounded border border-slate-300 overflow-x-auto">
                                         <p class="font-bold mb-2">Pearson Correlation Coefficients</p>
-                                        <table class="w-full text-xs">
-                                            <tr class="border-b"><td class="p-2"></td><td class="p-2 font-bold">height</td><td class="p-2 font-bold">weight</td></tr>
-                                            <tr class="border-b"><td class="p-2 font-bold">height</td><td class="p-2">1.00000</td><td class="p-2">0.87719<br>&lt;.0001</td></tr>
-                                            <tr><td class="p-2 font-bold">weight</td><td class="p-2">0.87719<br>&lt;.0001</td><td class="p-2">1.00000</td></tr>
+                                        <table class="w-full text-xs md:text-sm">
+                                            <tr class="border-b"><td class="p-1 md:p-2"></td><td class="p-1 md:p-2 font-bold">height</td><td class="p-1 md:p-2 font-bold">weight</td></tr>
+                                            <tr class="border-b"><td class="p-1 md:p-2 font-bold">height</td><td class="p-1 md:p-2">1.00000</td><td class="p-1 md:p-2">0.87719<br>&lt;.0001</td></tr>
+                                            <tr><td class="p-1 md:p-2 font-bold">weight</td><td class="p-1 md:p-2">0.87719<br>&lt;.0001</td><td class="p-1 md:p-2">1.00000</td></tr>
                                         </table>
                                     </div>
-                                    <p class="mt-4 text-sm text-slate-700"><strong>r = 0.88:</strong> Strong positive correlation. <strong>r² = 0.77:</strong> 77% of weight variance explained by height.</p>
+                                    <p class="mt-3 md:mt-4 text-xs md:text-sm text-slate-700"><strong>r = 0.88:</strong> Strong positive correlation. <strong>r² = 0.77:</strong> 77% of weight variance explained by height.</p>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC CORR DATA=adlb SPEARMAN;
     VAR lbtest1 lbtest2 lbtest3;
     WITH efficacy_score;
@@ -1522,9 +1838,9 @@ RUN;</code></pre>
                         badge: 'sashelp.class',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Model relationship between dependent and independent variables. Predict outcomes and adjust for confounders.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Model relationship between dependent and independent variables. Predict outcomes and adjust for confounders.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>PROC REG DATA=sashelp.class;
@@ -1534,22 +1850,22 @@ RUN;</code></pre>
     TITLE "Linear Regression: Weight = f(Height)";
 RUN;</code></pre>
 
-                                <div class="bg-slate-50 rounded-lg p-6 mt-6 border border-slate-200">
-                                    <h4 class="font-bold text-slate-900 mb-3">Output Interpretation</h4>
-                                    <div class="font-mono text-sm bg-white p-4 rounded border border-slate-300">
+                                <div class="bg-slate-50 rounded-lg p-4 md:p-6 mt-4 md:mt-6 border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2 md:mb-3 text-sm md:text-base">Output Interpretation</h4>
+                                    <div class="font-mono text-xs md:text-sm bg-white p-3 md:p-4 rounded border border-slate-300 overflow-x-auto">
                                         <p class="font-bold">Parameter Estimates</p>
-                                        <table class="w-full text-xs mt-2">
-                                            <tr class="border-b font-bold"><td class="p-2">Variable</td><td class="p-2">DF</td><td class="p-2">Estimate</td><td class="p-2">Std Error</td><td class="p-2">t Value</td><td class="p-2">Pr > |t|</td></tr>
-                                            <tr class="border-b"><td class="p-2">Intercept</td><td class="p-2">1</td><td class="p-2">-143.03</td><td class="p-2">32.27</td><td class="p-2">-4.43</td><td class="p-2">0.0004</td></tr>
-                                            <tr><td class="p-2">height</td><td class="p-2">1</td><td class="p-2">3.899</td><td class="p-2">0.516</td><td class="p-2">7.55</td><td class="p-2">&lt;.0001</td></tr>
+                                        <table class="w-full text-xs md:text-sm mt-2">
+                                            <tr class="border-b font-bold"><td class="p-1 md:p-2">Variable</td><td class="p-1 md:p-2">DF</td><td class="p-1 md:p-2">Estimate</td><td class="p-1 md:p-2">Std Error</td><td class="p-1 md:p-2">t Value</td><td class="p-1 md:p-2">Pr > |t|</td></tr>
+                                            <tr class="border-b"><td class="p-1 md:p-2">Intercept</td><td class="p-1 md:p-2">1</td><td class="p-1 md:p-2">-143.03</td><td class="p-1 md:p-2">32.27</td><td class="p-1 md:p-2">-4.43</td><td class="p-1 md:p-2">0.0004</td></tr>
+                                            <tr><td class="p-1 md:p-2">height</td><td class="p-1 md:p-2">1</td><td class="p-1 md:p-2">3.899</td><td class="p-1 md:p-2">0.516</td><td class="p-1 md:p-2">7.55</td><td class="p-1 md:p-2">&lt;.0001</td></tr>
                                         </table>
                                         <p class="mt-2"><strong>R-Square = 0.7705</strong></p>
                                     </div>
-                                    <p class="mt-4 text-sm text-slate-700">Model explains 77% of variance. Each inch increase in height adds 3.9 lbs.</p>
+                                    <p class="mt-3 md:mt-4 text-xs md:text-sm text-slate-700">Model explains 77% of variance. Each inch increase in height adds 3.9 lbs.</p>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example (ANCOVA)</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example (ANCOVA)</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC REG DATA=adef;
     MODEL aval = trtpn age weight baseline;
     TITLE "ANCOVA Model for Efficacy";
@@ -1563,9 +1879,9 @@ RUN;</code></pre>
                         badge: 'sashelp.heart',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">Purpose</h4>
-                                    <p class="text-blue-800">Model binary outcomes (yes/no, success/failure). Calculate odds ratios for risk factors.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">Purpose</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">Model binary outcomes (yes/no, success/failure). Calculate odds ratios for risk factors.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>PROC LOGISTIC DATA=sashelp.heart;
@@ -1575,24 +1891,24 @@ RUN;</code></pre>
     TITLE "Predictors of Mortality";
 RUN;</code></pre>
 
-                                <div class="bg-slate-50 rounded-lg p-6 mt-6 border border-slate-200">
-                                    <h4 class="font-bold text-slate-900 mb-3">Odds Ratio Interpretation</h4>
-                                    <div class="font-mono text-sm bg-white p-4 rounded border border-slate-300">
-                                        <table class="w-full text-xs">
-                                            <tr class="border-b font-bold"><td class="p-2">Effect</td><td class="p-2">Point Estimate</td><td class="p-2">95% Wald CI</td></tr>
-                                            <tr class="border-b"><td class="p-2">sex F vs M</td><td class="p-2">0.567</td><td class="p-2">(0.358, 0.898)</td></tr>
-                                            <tr><td class="p-2">age_at_start</td><td class="p-2">1.047</td><td class="p-2">(1.022, 1.072)</td></tr>
+                                <div class="bg-slate-50 rounded-lg p-4 md:p-6 mt-4 md:mt-6 border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2 md:mb-3 text-sm md:text-base">Odds Ratio Interpretation</h4>
+                                    <div class="font-mono text-xs md:text-sm bg-white p-3 md:p-4 rounded border border-slate-300 overflow-x-auto">
+                                        <table class="w-full">
+                                            <tr class="border-b font-bold"><td class="p-1 md:p-2">Effect</td><td class="p-1 md:p-2">Point Estimate</td><td class="p-1 md:p-2">95% Wald CI</td></tr>
+                                            <tr class="border-b"><td class="p-1 md:p-2">sex F vs M</td><td class="p-1 md:p-2">0.567</td><td class="p-1 md:p-2">(0.358, 0.898)</td></tr>
+                                            <tr><td class="p-1 md:p-2">age_at_start</td><td class="p-1 md:p-2">1.047</td><td class="p-1 md:p-2">(1.022, 1.072)</td></tr>
                                         </table>
                                     </div>
-                                    <div class="mt-4 space-y-2 text-sm text-slate-700">
+                                    <div class="mt-3 md:mt-4 space-y-1 md:space-y-2 text-xs md:text-sm text-slate-700">
                                         <p><strong>Sex (Female vs Male):</strong> OR = 0.57 (43% lower odds of death)</p>
                                         <p><strong>Age:</strong> OR = 1.05 (5% increased odds per year)</p>
-                                        <p class="text-xs text-slate-500 mt-2">95% CI excluding 1.0 indicates statistical significance</p>
+                                        <p class="text-xs text-slate-500 mt-1 md:mt-2">95% CI excluding 1.0 indicates statistical significance</p>
                                     </div>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example</h4>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>PROC LOGISTIC DATA=adef;
     CLASS trt01p (ref='Placebo') sex race / PARAM=ref;
     MODEL responder(event='1') = trt01p age weight baseline;
@@ -1616,15 +1932,15 @@ RUN;</code></pre>
                         badge: 'ADTTE Dataset',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-red-900 mb-2">Critical for Clinical Trials</h4>
-                                    <p class="text-red-800">Survival analysis is the cornerstone of oncology and cardiovascular clinical trials. PROC LIFETEST generates Kaplan-Meier curves for time-to-event endpoints like Overall Survival (OS) and Progression-Free Survival (PFS).</p>
+                                <div class="bg-red-50 border-l-4 border-red-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-red-900 mb-2 text-sm md:text-base">Critical for Clinical Trials</h4>
+                                    <p class="text-red-800 text-sm md:text-base leading-relaxed">Survival analysis is the cornerstone of oncology and cardiovascular clinical trials. PROC LIFETEST generates Kaplan-Meier curves for time-to-event endpoints like Overall Survival (OS) and Progression-Free Survival (PFS).</p>
                                 </div>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3">Purpose</h3>
-                                <p class="text-slate-700 mb-4">Estimate survival function from lifetime data. Handle censored observations (patients still alive or lost to follow-up). Compare survival between treatment groups.</p>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3">Purpose</h3>
+                                <p class="text-slate-700 mb-3 md:mb-4 text-sm md:text-base">Estimate survival function from lifetime data. Handle censored observations (patients still alive or lost to follow-up). Compare survival between treatment groups.</p>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3">Syntax</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3">Syntax</h3>
                                 <pre class="language-sas"><code>PROC LIFETEST DATA=dataset METHOD=KM <options>;
     TIME time_variable * censor_indicator(0);
     STRATA treatment_group;
@@ -1633,7 +1949,7 @@ RUN;</code></pre>
                SurvivalPlot=plot_data;
 RUN;</code></pre>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3 mt-6">Example: Kaplan-Meier with SASHELP.HEART</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3 mt-4 md:mt-6">Example: Kaplan-Meier with SASHELP.HEART</h3>
                                 <pre class="language-sas"><code>/* Prepare survival data from heart dataset */
 DATA heart_survival;
     SET sashelp.heart;
@@ -1661,43 +1977,43 @@ PROC LIFETEST DATA=heart_survival METHOD=KM
     FOOTNOTE "Censored observations marked with +";
 RUN;</code></pre>
 
-                                <div class="bg-slate-50 rounded-lg p-6 mt-6 border border-slate-200">
-                                    <h4 class="font-bold text-slate-900 mb-3">Output Interpretation</h4>
-                                    <div class="font-mono text-sm bg-white p-4 rounded border border-slate-300 overflow-x-auto">
-                                        <table class="w-full text-xs">
+                                <div class="bg-slate-50 rounded-lg p-4 md:p-6 mt-4 md:mt-6 border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2 md:mb-3 text-sm md:text-base">Output Interpretation</h4>
+                                    <div class="font-mono text-xs md:text-sm bg-white p-3 md:p-4 rounded border border-slate-300 overflow-x-auto">
+                                        <table class="w-full">
                                             <tr class="border-b font-bold bg-slate-50">
-                                                <td class="p-2">sex</td>
-                                                <td class="p-2">Total</td>
-                                                <td class="p-2">Failed</td>
-                                                <td class="p-2">Censored</td>
-                                                <td class="p-2">Median Survival</td>
+                                                <td class="p-1 md:p-2">sex</td>
+                                                <td class="p-1 md:p-2">Total</td>
+                                                <td class="p-1 md:p-2">Failed</td>
+                                                <td class="p-1 md:p-2">Censored</td>
+                                                <td class="p-1 md:p-2">Median Survival</td>
                                             </tr>
                                             <tr class="border-b">
-                                                <td class="p-2">Female</td>
-                                                <td class="p-2">238</td>
-                                                <td class="p-2">89</td>
-                                                <td class="p-2">149</td>
-                                                <td class="p-2">245.2</td>
+                                                <td class="p-1 md:p-2">Female</td>
+                                                <td class="p-1 md:p-2">238</td>
+                                                <td class="p-1 md:p-2">89</td>
+                                                <td class="p-1 md:p-2">149</td>
+                                                <td class="p-1 md:p-2">245.2</td>
                                             </tr>
                                             <tr>
-                                                <td class="p-2">Male</td>
-                                                <td class="p-2">282</td>
-                                                <td class="p-2">156</td>
-                                                <td class="p-2">126</td>
-                                                <td class="p-2">198.7</td>
+                                                <td class="p-1 md:p-2">Male</td>
+                                                <td class="p-1 md:p-2">282</td>
+                                                <td class="p-1 md:p-2">156</td>
+                                                <td class="p-1 md:p-2">126</td>
+                                                <td class="p-1 md:p-2">198.7</td>
                                             </tr>
                                         </table>
                                     </div>
-                                    <ul class="mt-4 space-y-2 text-sm text-slate-700">
+                                    <ul class="mt-3 md:mt-4 space-y-1 md:space-y-2 text-xs md:text-sm text-slate-700">
                                         <li><strong>Median Survival:</strong> Time when survival probability = 50%</li>
                                         <li><strong>Censored:</strong> Patients alive at last follow-up or lost to follow-up</li>
                                         <li><strong>Log-Rank Test:</strong> Tests equality of survival curves (p < 0.05 indicates difference)</li>
                                     </ul>
                                 </div>
 
-                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-blue-900 mb-3">Key Options Explained</h4>
-                                    <ul class="space-y-2 text-blue-800 text-sm">
+                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-blue-900 mb-2 md:mb-3 text-sm md:text-base">Key Options Explained</h4>
+                                    <ul class="space-y-1 md:space-y-2 text-blue-800 text-xs md:text-sm">
                                         <li><code>METHOD=KM</code> - Kaplan-Meier estimation (product-limit method)</li>
                                         <li><code>time*censor(0)</code> - Time variable with censoring indicator (0=censored, 1=event)</li>
                                         <li><code>STRATA</code> - Compares survival between groups (e.g., treatment arms)</li>
@@ -1705,9 +2021,9 @@ RUN;</code></pre>
                                     </ul>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example: ADTTE Analysis</h4>
-                                    <p class="text-green-800 mb-3">ADTTE (ADaM Time to Event) is the standard dataset for survival analysis:</p>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example: ADTTE Analysis</h4>
+                                    <p class="text-green-800 mb-2 md:mb-3 text-sm md:text-base">ADTTE (ADaM Time to Event) is the standard dataset for survival analysis:</p>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>/* ADTTE - Time to Event Analysis Dataset */
 PROC LIFETEST DATA=adtte METHOD=KM 
     PLOTS=(SURVIVAL(ATRISK=0 TO 48 BY 12));
@@ -1728,15 +2044,15 @@ RUN;</code></pre>
                         badge: 'Hazard Ratios',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-red-900 mb-2">The Gold Standard</h4>
-                                    <p class="text-red-800">Cox regression is the most widely used method for survival analysis in clinical trials. It estimates Hazard Ratios (HR) while adjusting for covariates.</p>
+                                <div class="bg-red-50 border-l-4 border-red-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-red-900 mb-2 text-sm md:text-base">The Gold Standard</h4>
+                                    <p class="text-red-800 text-sm md:text-base leading-relaxed">Cox regression is the most widely used method for survival analysis in clinical trials. It estimates Hazard Ratios (HR) while adjusting for covariates.</p>
                                 </div>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3">Purpose</h3>
-                                <p class="text-slate-700 mb-4">Model the relationship between survival time and predictor variables. Estimate Hazard Ratios to quantify treatment effect. Adjust for prognostic factors (stratification variables).</p>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3">Purpose</h3>
+                                <p class="text-slate-700 mb-3 md:mb-4 text-sm md:text-base">Model the relationship between survival time and predictor variables. Estimate Hazard Ratios to quantify treatment effect. Adjust for prognostic factors (stratification variables).</p>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3">Syntax</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3">Syntax</h3>
                                 <pre class="language-sas"><code>PROC PHREG DATA=dataset;
     CLASS categorical_vars / PARAM=ref REF=first;
     MODEL time * censor(0) = covariates / TIES=EFRON RISKLIMITS;
@@ -1745,7 +2061,7 @@ RUN;</code></pre>
     ID patient_id;
 RUN;</code></pre>
 
-                                <h3 class="text-lg font-bold text-slate-900 mb-3 mt-6">Example: Cox Regression with Heart Data</h3>
+                                <h3 class="text-base md:text-lg font-bold text-slate-900 mb-2 md:mb-3 mt-4 md:mt-6">Example: Cox Regression with Heart Data</h3>
                                 <pre class="language-sas"><code>PROC PHREG DATA=heart_survival;
     CLASS sex (ref='Female') smoking_status (ref='Non-smoker');
     MODEL time_months * died(0) = sex age_at_start smoking_status 
@@ -1760,72 +2076,72 @@ RUN;</code></pre>
     TITLE2 "Predictors of Mortality";
 RUN;</code></pre>
 
-                                <div class="bg-slate-50 rounded-lg p-6 mt-6 border border-slate-200">
-                                    <h4 class="font-bold text-slate-900 mb-3">Output Interpretation: Hazard Ratios</h4>
-                                    <div class="font-mono text-sm bg-white p-4 rounded border border-slate-300 overflow-x-auto">
-                                        <table class="w-full text-xs">
+                                <div class="bg-slate-50 rounded-lg p-4 md:p-6 mt-4 md:mt-6 border border-slate-200">
+                                    <h4 class="font-bold text-slate-900 mb-2 md:mb-3 text-sm md:text-base">Output Interpretation: Hazard Ratios</h4>
+                                    <div class="font-mono text-xs md:text-sm bg-white p-3 md:p-4 rounded border border-slate-300 overflow-x-auto">
+                                        <table class="w-full">
                                             <tr class="border-b font-bold bg-slate-50">
-                                                <td class="p-2">Parameter</td>
-                                                <td class="p-2">HR Point Estimate</td>
-                                                <td class="p-2">95% CI</td>
-                                                <td class="p-2">p-value</td>
-                                                <td class="p-2">Interpretation</td>
+                                                <td class="p-1 md:p-2">Parameter</td>
+                                                <td class="p-1 md:p-2">HR Point Estimate</td>
+                                                <td class="p-1 md:p-2">95% CI</td>
+                                                <td class="p-1 md:p-2">p-value</td>
+                                                <td class="p-1 md:p-2">Interpretation</td>
                                             </tr>
                                             <tr class="border-b">
-                                                <td class="p-2">sex Male vs Female</td>
-                                                <td class="p-2 font-bold text-red-600">1.847</td>
-                                                <td class="p-2">(1.234, 2.765)</td>
-                                                <td class="p-2">0.0032</td>
-                                                <td class="p-2">84% higher risk</td>
+                                                <td class="p-1 md:p-2">sex Male vs Female</td>
+                                                <td class="p-1 md:p-2 font-bold text-red-600">1.847</td>
+                                                <td class="p-1 md:p-2">(1.234, 2.765)</td>
+                                                <td class="p-1 md:p-2">0.0032</td>
+                                                <td class="p-1 md:p-2">84% higher risk</td>
                                             </tr>
                                             <tr class="border-b">
-                                                <td class="p-2">age_at_start</td>
-                                                <td class="p-2">1.089</td>
-                                                <td class="p-2">(1.056, 1.123)</td>
-                                                <td class="p-2">&lt;.0001</td>
-                                                <td class="p-2">8.9% increase per year</td>
+                                                <td class="p-1 md:p-2">age_at_start</td>
+                                                <td class="p-1 md:p-2">1.089</td>
+                                                <td class="p-1 md:p-2">(1.056, 1.123)</td>
+                                                <td class="p-1 md:p-2">&lt;.0001</td>
+                                                <td class="p-1 md:p-2">8.9% increase per year</td>
                                             </tr>
                                             <tr>
-                                                <td class="p-2">systolic (per 10mmHg)</td>
-                                                <td class="p-2">1.124</td>
-                                                <td class="p-2">(1.034, 1.221)</td>
-                                                <td class="p-2">0.0056</td>
-                                                <td class="p-2">12.4% increase per 10mmHg</td>
+                                                <td class="p-1 md:p-2">systolic (per 10mmHg)</td>
+                                                <td class="p-1 md:p-2">1.124</td>
+                                                <td class="p-1 md:p-2">(1.034, 1.221)</td>
+                                                <td class="p-1 md:p-2">0.0056</td>
+                                                <td class="p-1 md:p-2">12.4% increase per 10mmHg</td>
                                             </tr>
                                         </table>
                                     </div>
                                     
-                                    <div class="mt-4 space-y-3 text-sm">
-                                        <div class="p-3 bg-white rounded border border-slate-200">
+                                    <div class="mt-4 md:mt-6 space-y-2 md:space-y-3 text-xs md:text-sm">
+                                        <div class="p-2 md:p-3 bg-white rounded border border-slate-200">
                                             <p class="font-semibold text-slate-900">Hazard Ratio (HR) = 1.0</p>
                                             <p class="text-slate-600">No effect (reference group)</p>
                                         </div>
-                                        <div class="p-3 bg-red-50 rounded border border-red-200">
+                                        <div class="p-2 md:p-3 bg-red-50 rounded border border-red-200">
                                             <p class="font-semibold text-red-900">HR > 1.0 (e.g., 1.85)</p>
                                             <p class="text-red-700">Increased hazard/risk compared to reference. Males have 85% higher risk of death than females.</p>
                                         </div>
-                                        <div class="p-3 bg-green-50 rounded border border-green-200">
+                                        <div class="p-2 md:p-3 bg-green-50 rounded border border-green-200">
                                             <p class="font-semibold text-green-900">HR < 1.0 (e.g., 0.65)</p>
                                             <p class="text-green-700">Decreased hazard/risk (protective effect). Treatment reduces risk by 35%.</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-amber-900 mb-3">Proportional Hazards Assumption</h4>
-                                    <p class="text-amber-800 mb-3">The Cox model assumes hazards are proportional over time. Check using:</p>
+                                <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-amber-900 mb-2 md:mb-3 text-sm md:text-base">Proportional Hazards Assumption</h4>
+                                    <p class="text-amber-800 mb-2 md:mb-3 text-sm md:text-base">The Cox model assumes hazards are proportional over time. Check using:</p>
                                     <pre class="language-sas bg-amber-900/10 border-amber-200"><code>/* Check proportional hazards assumption */
 PROC PHREG DATA=heart_survival PLOTS(OVERLAY)=SURVIVAL;
     CLASS sex;
     MODEL time_months * died(0) = sex age_at_start;
     ASSESS PH / RESAMPLE; /* Kolmogorov-type supremum test */
 RUN;</code></pre>
-                                    <p class="text-amber-800 mt-3 text-sm">If p < 0.05, consider time-dependent covariates or stratification.</p>
+                                    <p class="text-amber-800 mt-2 md:mt-3 text-xs md:text-sm">If p < 0.05, consider time-dependent covariates or stratification.</p>
                                 </div>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Example: Oncology Trial</h4>
-                                    <p class="text-green-800 mb-3">Standard analysis for Overall Survival (OS) in cancer trials:</p>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Example: Oncology Trial</h4>
+                                    <p class="text-green-800 mb-2 md:mb-3 text-sm md:text-base">Standard analysis for Overall Survival (OS) in cancer trials:</p>
                                     <pre class="language-sas bg-green-900/10 border-green-200"><code>/* Stratified Cox Model for Phase III Oncology Trial */
 PROC PHREG DATA=adtte;
     CLASS trt01p (ref='Placebo') sex race ecog_ps;
@@ -1841,9 +2157,9 @@ PROC PHREG DATA=adtte;
     TITLE "Stratified Cox Model: Overall Survival";
     TITLE2 "ITT Population";
 RUN;</code></pre>
-                                    <div class="mt-4 p-3 bg-white rounded border border-green-300">
-                                        <p class="text-sm text-green-900 font-semibold">Key Regulatory Requirements:</p>
-                                        <ul class="mt-2 text-sm text-green-800 space-y-1">
+                                    <div class="mt-3 md:mt-4 p-2 md:p-3 bg-white rounded border border-green-300">
+                                        <p class="text-xs md:text-sm text-green-900 font-semibold">Key Regulatory Requirements:</p>
+                                        <ul class="mt-1 md:mt-2 text-xs md:text-sm text-green-800 space-y-1">
                                             <li>• Stratification factors from randomization must be included</li>
                                             <li>• TIES=EFRON handles tied event times (common in large trials)</li>
                                             <li>• RISKLIMITS provides 95% CI for Hazard Ratios</li>
@@ -1859,9 +2175,9 @@ RUN;</code></pre>
                         badge: 'Advanced',
                         content: `
                             <div class="prose max-w-none">
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                                    <h4 class="font-bold text-blue-900 mb-2">When Events Compete</h4>
-                                    <p class="text-blue-800">In many trials, patients may experience competing events (e.g., death vs. progression). Standard Kaplan-Meier overestimates risk.</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                                    <h4 class="font-bold text-blue-900 mb-2 text-sm md:text-base">When Events Compete</h4>
+                                    <p class="text-blue-800 text-sm md:text-base leading-relaxed">In many trials, patients may experience competing events (e.g., death vs. progression). Standard Kaplan-Meier overestimates risk.</p>
                                 </div>
 
                                 <pre class="language-sas"><code>/* Fine and Gray Model for Competing Risks */
@@ -1871,10 +2187,10 @@ PROC PHREG DATA=adtte EVENTCODE=1; /* Event of interest */
     TITLE "Competing Risks: Progression vs Death";
 RUN;</code></pre>
 
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
-                                    <h4 class="font-bold text-green-900 mb-3">Clinical Context</h4>
-                                    <p class="text-green-800">Used when:</p>
-                                    <ul class="text-green-800 text-sm mt-2 space-y-1">
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6 mt-4 md:mt-6">
+                                    <h4 class="font-bold text-green-900 mb-2 md:mb-3 text-sm md:text-base">Clinical Context</h4>
+                                    <p class="text-green-800 text-sm md:text-base">Used when:</p>
+                                    <ul class="text-green-800 text-xs md:text-sm mt-2 space-y-1">
                                         <li>• Cancer trials: Progression vs Death without progression</li>
                                         <li>• Cardiovascular: MI vs Stroke vs CV Death</li>
                                         <li>• Transplant studies: Graft failure vs Death</li>
@@ -1891,76 +2207,149 @@ RUN;</code></pre>
         lucide.createIcons();
 
         // Populate Navigation
-        function populateNavigation() {
-            const sidebarNav = document.getElementById('sidebar-nav');
-            const mobileNav = document.getElementById('mobile-nav');
-            
-            let sidebarHTML = '';
-            let mobileHTML = '';
-            
-            courseData.forEach((section, index) => {
-                const highlightClass = section.highlight ? 'bg-red-50 border-red-200' : '';
-                const iconColor = section.highlight ? 'text-red-600' : 'text-blue-600';
-                
-                const sectionHTML = `
-                    <div class="space-y-1 ${highlightClass} rounded-lg p-2">
-                        <button onclick="toggleSection('${section.id}')" 
-                                class="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-100 transition-colors font-semibold text-slate-700 text-left">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="${section.icon}" class="w-5 h-5 ${iconColor}"></i>
-                                <span>${section.title}</span>
-                                ${section.highlight ? '<span class="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">NEW</span>' : ''}
-                            </div>
-                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform flex-shrink-0" id="icon-${section.id}"></i>
-                        </button>
-                        <div id="menu-${section.id}" class="hidden pl-10 space-y-1">
-                            ${section.topics.map((topic, tIndex) => `
-                                <a href="#${section.id}-${tIndex}" 
-                                   data-target="${section.id}-${tIndex}"
-                                   class="nav-link block p-2 rounded-md text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors">
-                                    ${topic.title}
-                                </a>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-                
-                sidebarHTML += sectionHTML;
-                mobileHTML += sectionHTML;
-            });
-            
-            sidebarNav.innerHTML = sidebarHTML;
-            mobileNav.innerHTML = mobileHTML;
-            lucide.createIcons();
-            
-            // Add click handlers to all nav links
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('data-target');
-                    navigateToSection(targetId);
-                });
-            });
-        }
+   function populateNavigation() {
 
+const sidebarNav = document.getElementById('sidebar-nav');
+const mobileNav = document.getElementById('mobile-nav');
+
+let sidebarHTML = '';
+let mobileHTML = '';
+
+courseData.forEach((section) => {
+
+const highlightClass = section.highlight ? 'bg-red-50 border-red-200' : '';
+const iconColor = section.highlight ? 'text-red-600' : 'text-blue-600';
+
+/* SIDEBAR VERSION */
+
+sidebarHTML += `
+<div class="space-y-1 ${highlightClass} rounded-lg p-2">
+
+<button id="sidebar-btn-${section.id}"
+class="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-100 font-semibold text-slate-700">
+
+<div class="flex items-center gap-2">
+
+<i data-lucide="${section.icon}" class="w-5 h-5 text-blue-600"></i>
+
+<span>${section.title}</span>
+
+</div>
+
+<i id="sidebar-icon-${section.id}" data-lucide="chevron-down"></i>
+
+</button>
+
+<div id="sidebar-menu-${section.id}" class="hidden pl-4">
+
+${section.topics.map((topic, tIndex) => `
+<a href="#${section.id}-${tIndex}"
+class="nav-link block p-2"
+data-target="${section.id}-${tIndex}">
+${topic.title}
+</a>
+`).join('')}
+
+</div>
+
+</div>`;
+
+
+/* MOBILE VERSION */
+
+/* MOBILE VERSION FIXED */
+
+mobileHTML += `
+<div class="space-y-1 ${highlightClass} rounded-lg p-2">
+
+<button id="mobile-btn-${section.id}"
+class="w-full flex items-center justify-between p-2 font-semibold text-slate-700">
+
+<div class="flex items-center gap-2">
+
+<i data-lucide="${section.icon}" class="w-5 h-5 text-blue-600"></i>
+
+<span>${section.title}</span>
+
+</div>
+
+<i id="mobile-icon-${section.id}" data-lucide="chevron-down"></i>
+
+</button>
+
+
+<div id="mobile-menu-${section.id}" class="hidden pl-4">
+
+${section.topics.map((topic, tIndex) => `
+<a href="#${section.id}-${tIndex}"
+class="nav-link block p-2"
+data-target="${section.id}-${tIndex}">
+${topic.title}
+</a>
+`).join('')}
+
+</div>
+
+</div>`;
+
+});
+
+sidebarNav.innerHTML = sidebarHTML;
+mobileNav.innerHTML = mobileHTML;
+
+lucide.createIcons();
+
+/* Toggle handlers */
+
+courseData.forEach(section => {
+
+document.getElementById(`sidebar-btn-${section.id}`)
+?.addEventListener("click", () =>
+toggleMenu("sidebar", section.id));
+
+document.getElementById(`mobile-btn-${section.id}`)
+?.addEventListener("click", () =>
+toggleMenu("mobile", section.id));
+
+});
+
+/* Nav click */
+
+document.querySelectorAll(".nav-link")
+.forEach(link =>
+link.addEventListener("click", function(e){
+
+e.preventDefault();
+
+navigateToSection(this.dataset.target);
+
+})
+);
+
+}   
         // Toggle Section
-        function toggleSection(sectionId) {
-            const menu = document.getElementById(`menu-${sectionId}`);
-            const icon = document.getElementById(`icon-${sectionId}`);
-            
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                menu.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
+function toggleMenu(type, id){
 
+const menu =
+document.getElementById(`${type}-menu-${id}`);
+
+const icon =
+document.getElementById(`${type}-icon-${id}`);
+
+menu.classList.toggle("hidden");
+
+icon.style.transform =
+menu.classList.contains("hidden")
+? "rotate(0deg)"
+: "rotate(180deg)";
+
+}
         // Navigate to Section
         function navigateToSection(targetId) {
             // Close mobile menu
-            document.getElementById('mobile-menu').classList.add('hidden');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = '';
             
             // Update active states
             document.querySelectorAll('.nav-link').forEach(link => {
@@ -1973,7 +2362,7 @@ RUN;</code></pre>
             // Scroll to target
             const target = document.getElementById(targetId);
             if (target) {
-                const offset = 100;
+                const offset = 80;
                 const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
                 window.scrollTo({ top: targetPosition, behavior: 'smooth' });
             }
@@ -1992,7 +2381,7 @@ RUN;</code></pre>
             // Scroll to the section header
             const target = document.getElementById(sectionId);
             if (target) {
-                const offset = 100;
+                const offset = 80;
                 const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
                 window.scrollTo({ top: targetPosition, behavior: 'smooth' });
             }
@@ -2002,6 +2391,7 @@ RUN;</code></pre>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
+            document.body.style.overflow = menu.classList.contains('hidden') ? '' : 'hidden';
         }
 
         // Populate Content
@@ -2014,25 +2404,25 @@ RUN;</code></pre>
                 
                 html += `
                     <section id="${section.id}" class="scroll-mt-20 ${highlightBorder} pl-0 md:pl-4">
-                        <div class="flex items-center gap-3 mb-8 pb-4 border-b-2 ${section.highlight ? 'border-red-200' : 'border-blue-100'}">
-                            <div class="w-12 h-12 ${section.highlight ? 'bg-red-100' : 'bg-blue-100'} rounded-xl flex items-center justify-center">
-                                <i data-lucide="${section.icon}" class="w-6 h-6 ${section.highlight ? 'text-red-600' : 'text-blue-600'}"></i>
+                        <div class="flex items-center gap-3 mb-6 md:mb-8 pb-3 md:pb-4 border-b-2 ${section.highlight ? 'border-red-200' : 'border-blue-100'}">
+                            <div class="w-10 h-10 md:w-12 md:h-12 ${section.highlight ? 'bg-red-100' : 'bg-blue-100'} rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="${section.icon}" class="w-5 h-5 md:w-6 md:h-6 ${section.highlight ? 'text-red-600' : 'text-blue-600'}"></i>
                             </div>
-                            <div>
-                                <h2 class="text-3xl font-bold text-slate-900">${section.title}</h2>
-                                <p class="text-slate-500 mt-1">Section ${sIndex + 1} of ${courseData.length}</p>
+                            <div class="min-w-0">
+                                <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-slate-900 leading-tight">${section.title}</h2>
+                                <p class="text-xs md:text-sm text-slate-500 mt-0.5">Section ${sIndex + 1} of ${courseData.length}</p>
                             </div>
-                            ${section.highlight ? '<span class="ml-auto bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">HIGH PRIORITY</span>' : ''}
+                            ${section.highlight ? '<span class="ml-auto bg-red-500 text-white px-2 md:px-3 py-1 rounded-full text-xs font-semibold flex-shrink-0">HIGH PRIORITY</span>' : ''}
                         </div>
                         
-                        <div class="space-y-8">
+                        <div class="space-y-6 md:space-y-8">
                             ${section.topics.map((topic, tIndex) => `
-                                <article id="${section.id}-${tIndex}" class="topic-card bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden scroll-mt-24">
-                                    <div class="p-6 md:p-8">
-                                        <div class="flex items-start justify-between mb-6 flex-wrap gap-2">
-                                            <h3 class="text-2xl font-bold text-slate-900">${topic.title}</h3>
+                                <article id="${section.id}-${tIndex}" class="topic-card bg-white rounded-xl md:rounded-2xl shadow-sm border border-slate-200 overflow-hidden scroll-mt-24">
+                                    <div class="p-4 md:p-6 lg:p-8">
+                                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 md:mb-6 gap-2">
+                                            <h3 class="text-lg md:text-xl lg:text-2xl font-bold text-slate-900 leading-tight">${topic.title}</h3>
                                             ${topic.badge ? `
-                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200">
+                                                <span class="inline-flex items-center px-2 md:px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200 flex-shrink-0 self-start">
                                                     ${topic.badge}
                                                 </span>
                                             ` : ''}
@@ -2049,35 +2439,15 @@ RUN;</code></pre>
             container.innerHTML = html;
             lucide.createIcons();
             
-            // Add copy buttons to code blocks
-            document.querySelectorAll('pre').forEach(pre => {
-                const button = document.createElement('button');
-                button.className = 'copy-btn absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white px-3 py-1 rounded text-xs font-medium transition-colors';
-                button.innerHTML = '<span class="flex items-center gap-1"><i data-lucide="copy" class="w-3 h-3"></i> Copy</span>';
-                button.onclick = () => copyCode(pre, button);
-                pre.style.position = 'relative';
-                pre.appendChild(button);
-            });
+         
             lucide.createIcons();
         }
 
-        // Copy Code Function
-        function copyCode(pre, button) {
-            const code = pre.querySelector('code').innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                button.innerHTML = '<span class="flex items-center gap-1"><i data-lucide="check" class="w-3 h-3"></i> Copied!</span>';
-                lucide.createIcons();
-                setTimeout(() => {
-                    button.innerHTML = '<span class="flex items-center gap-1"><i data-lucide="copy" class="w-3 h-3"></i> Copy</span>';
-                    lucide.createIcons();
-                }, 2000);
-            });
-        }
-
+  
         // Scroll Spy for Active Navigation
         function updateActiveNav() {
             const sections = document.querySelectorAll('article[id]');
-            const scrollPos = window.scrollY + 150;
+            const scrollPos = window.scrollY + 100;
             
             sections.forEach(section => {
                 const top = section.offsetTop;
@@ -2096,7 +2466,7 @@ RUN;</code></pre>
             
             // Back to top button visibility
             const backToTop = document.getElementById('back-to-top');
-            if (window.scrollY > 500) {
+            if (window.scrollY > 300) {
                 backToTop.style.opacity = '1';
                 backToTop.style.pointerEvents = 'auto';
             } else {
@@ -2131,9 +2501,86 @@ RUN;</code></pre>
             populateNavigation();
             populateContent();
             
-            // Mobile menu event listeners
-            document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
-            document.getElementById('close-mobile-menu').addEventListener('click', toggleMobileMenu);
+            // Mobile menu event listeners - using addEventListener instead of onclick
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+            const backToTopBtn = document.getElementById('back-to-top');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleMobileMenu();
+                });
+            }
+            
+            if (closeMobileMenuBtn) {
+                closeMobileMenuBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleMobileMenu();
+                });
+            }
+            
+            // Back to top button
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                });
+            }
+            
+            // Hero buttons
+            const btnStartLearning = document.getElementById('btn-start-learning');
+            const btnJumpStatsHero = document.getElementById('btn-jump-stats-hero');
+            const btnJumpSurvivalHero = document.getElementById('btn-jump-survival-hero');
+            
+            if (btnStartLearning) {
+                btnStartLearning.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    scrollToSection('section-1');
+                });
+            }
+            
+            if (btnJumpStatsHero) {
+                btnJumpStatsHero.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    scrollToSection('section-4');
+                });
+            }
+            
+            if (btnJumpSurvivalHero) {
+                btnJumpSurvivalHero.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    scrollToSection('section-5');
+                });
+            }
+            
+            // Mobile quick jump buttons
+            const btnJumpBasic = document.getElementById('btn-jump-basic');
+            const btnJumpStats = document.getElementById('btn-jump-stats');
+            const btnJumpSurvival = document.getElementById('btn-jump-survival');
+            
+            if (btnJumpBasic) {
+                btnJumpBasic.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    scrollToSection('section-1');
+                });
+            }
+            
+            if (btnJumpStats) {
+                btnJumpStats.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    scrollToSection('section-4');
+                });
+            }
+            
+            if (btnJumpSurvival) {
+                btnJumpSurvival.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    scrollToSection('section-5');
+                });
+            }
             
             // Close mobile menu when clicking outside
             document.getElementById('mobile-menu').addEventListener('click', function(e) {
@@ -2143,7 +2590,7 @@ RUN;</code></pre>
             });
             
             // Scroll event listener
-            window.addEventListener('scroll', updateActiveNav);
+            window.addEventListener('scroll', updateActiveNav, { passive: true });
             
             // Expand first section by default
             setTimeout(() => {
@@ -2154,7 +2601,9 @@ RUN;</code></pre>
         // Handle window resize
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 1024) {
-                document.getElementById('mobile-menu').classList.add('hidden');
+                const mobileMenu = document.getElementById('mobile-menu');
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
             }
         });
     </script>
